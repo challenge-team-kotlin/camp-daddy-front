@@ -123,6 +123,14 @@ table {
   border-spacing: 0;
 }
 
+button {
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
 /* 메인 css 시작 */
 
 html,

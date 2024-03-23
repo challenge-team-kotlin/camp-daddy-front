@@ -50,26 +50,26 @@ export default function Main() {
         {/* 상품 리스트 */}
         <div className={styles.main_product}>
           <div className={styles.product_list}>
-            <div className={styles.left_box}>
+            <button className={styles.left_box}>
               <img src={"images/product_img.png"} alt="dddd" />
               <div>
                 <p>타이틀 영역 입니다.</p>
                 <span>가격 영역 입니다.</span>
               </div>
-            </div>
+            </button>
             <div className={styles.right_box}>
               <button>좋아요</button>
               <p>0</p>
             </div>
           </div>
           <div className={styles.product_list}>
-            <div className={styles.left_box}>
+            <button className={styles.left_box}>
               <img src={"images/product_img.png"} alt="dddd" />
               <div>
                 <p>타이틀 영역 입니다.</p>
                 <span>가격 영역 입니다.</span>
               </div>
-            </div>
+            </button>
             <div className={styles.right_box}>
               <button>좋아요</button>
               <p>0</p>

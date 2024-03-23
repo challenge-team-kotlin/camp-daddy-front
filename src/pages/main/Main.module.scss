@@ -34,6 +34,7 @@
   button {
     width: 80px;
     height: 30px;
+    border: 1px solid #aaa;
   }
 }
 
@@ -62,6 +63,9 @@
     flex-direction: row;
     align-items: center;
     gap: 16px;
+    text-align: left;
+    background-color: transparent;
+    border: 0;
     img {
       width: 60px;
       height: 60px;
@@ -85,5 +89,9 @@
     flex-direction: row;
     gap: 8px;
     align-items: center;
+    button {
+      border: 1px solid #aaa;
+      padding: 5px;
+    }
   }
 }
