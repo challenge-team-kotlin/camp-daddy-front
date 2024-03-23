@@ -1,0 +1,57 @@
+import styles from "./Molecules.module.scss";
+
+export default function Nav() {
+  // 로그인 여부
+  const user = false;
+  return (
+    <div className={styles.nav}>
+      <button
+        onClick={() => {
+          if (user) {
+            window.location.href = "/sign-in";
+          } else {
+            window.location.href = "/product-add";
+          }
+        }}
+      >
+        <img src={"images/product_img.png"} alt="" />
+      </button>
+      <button
+        onClick={() => {
+          window.location.href = "/search";
+        }}
+      >
+        <img src={"images/product_img.png"} alt="" />
+      </button>
+      <button
+        onClick={() => {
+          window.location.href = "/";
+        }}
+      >
+        <img src={"images/product_img.png"} alt="" />
+      </button>
+      <button
+        onClick={() => {
+          if (user) {
+            window.location.href = "/sign-in";
+          } else {
+            window.location.href = "/chatting";
+          }
+        }}
+      >
+        <img src={"images/product_img.png"} alt="" />
+      </button>
+      <button
+        onClick={() => {
+          if (user) {
+            window.location.href = "/sign-in";
+          } else {
+            window.location.href = "/my-page";
+          }
+        }}
+      >
+        <img src={"images/product_img.png"} alt="" />
+      </button>
+    </div>
+  );
+}
