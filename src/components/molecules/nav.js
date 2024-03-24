@@ -1,4 +1,5 @@
 import styles from "./Molecules.module.scss";
+import icon from "./product_img.png";
 
 export default function Nav() {
   // 로그인 여부
@@ -14,21 +15,21 @@ export default function Nav() {
           }
         }}
       >
-        <img src={"images/product_img.png"} alt="" />
+        <img src={icon} alt="" />
       </button>
       <button
         onClick={() => {
           window.location.href = "/search";
         }}
       >
-        <img src={"images/product_img.png"} alt="" />
+        <img src={icon} alt="" />
       </button>
       <button
         onClick={() => {
           window.location.href = "/";
         }}
       >
-        <img src={"images/product_img.png"} alt="" />
+        <img src={icon} alt="" />
       </button>
       <button
         onClick={() => {
@@ -39,7 +40,7 @@ export default function Nav() {
           }
         }}
       >
-        <img src={"images/product_img.png"} alt="" />
+        <img src={icon} alt="" />
       </button>
       <button
         onClick={() => {
@@ -50,7 +51,7 @@ export default function Nav() {
           }
         }}
       >
-        <img src={"images/product_img.png"} alt="" />
+        <img src={icon} alt="" />
       </button>
     </div>
   );

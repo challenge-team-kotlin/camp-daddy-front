@@ -1,0 +1,81 @@
+.my_main {
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  padding: 20px 0 0 20px;
+}
+
+.banner {
+  padding: 20px 0;
+  img {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+  p {
+    padding: 20px 10px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+  }
+  span {
+    display: block;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
+  }
+}
+
+.btn_box {
+  display: flex;
+  flex-direction: row;
+  button {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    font-size: 20px;
+    font-weight: 500;
+    color: red;
+    border: 1px solid red;
+  }
+}
+
+.review_wrap {
+  padding: 20px 20px 50px 20px;
+  h6 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+    padding-bottom: 20px;
+  }
+  .review_box {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border-bottom: 1px solid #000;
+    padding: 20px 0;
+    img {
+      width: 80px;
+      height: 80px;
+    }
+    p {
+      font-size: 12px;
+      font-weight: 500;
+      color: #000;
+    }
+    span {
+      display: block;
+      padding-top: 10px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #000;
+    }
+  }
+}

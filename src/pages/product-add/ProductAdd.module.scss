@@ -1,0 +1,40 @@
+.my_main {
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  padding: 20px 0 0 20px;
+}
+
+.add {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px;
+  input {
+    height: 25px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    padding: 0 10px;
+  }
+  textarea {
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    padding: 10px;
+  }
+  button {
+    width: 200px;
+    height: 40px;
+    margin: 20px auto 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    border: 1px solid #000;
+  }
+}

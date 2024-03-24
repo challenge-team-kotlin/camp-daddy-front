@@ -6,7 +6,7 @@ import styles from "./Main.module.scss";
 
 export default function Main() {
   return (
-    <div className="nav_wrap">
+    <div>
       <div className={styles.main} style={{ flex: 1 }}>
         {/* 타이틀 검색 영역 */}
         <div className={styles.main_title}>

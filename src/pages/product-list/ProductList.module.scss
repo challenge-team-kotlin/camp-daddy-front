@@ -1,0 +1,56 @@
+.my_main {
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  padding: 20px 0 0 20px;
+}
+
+.checkbox {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  input {
+    cursor: pointer;
+  }
+  label {
+    cursor: pointer;
+  }
+}
+
+.product_wrap {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  button {
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    img {
+      width: 120px;
+      height: 80px;
+    }
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      color: #000;
+    }
+    span {
+      display: block;
+      padding-top: 10px;
+      font-size: 16px;
+      font-weight: 400;
+      color: red;
+    }
+  }
+}
