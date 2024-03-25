@@ -14,10 +14,6 @@ export default function MyInfo() {
           <p>닉네임</p>
           <input type="text" value={"백엔드값"} disabled />
         </div>
-        <div className={styles.input_box} style={{ paddingBottom: 50 }}>
-          <p>핸드폰 번호</p>
-          <input type="number" maxLength={11} />
-        </div>
         <button>수정하기</button>
       </div>
       <Nav />
