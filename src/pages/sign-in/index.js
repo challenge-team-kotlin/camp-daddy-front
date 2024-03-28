@@ -1,29 +1,33 @@
 import Nav from "../../components/molecules/nav";
 import styles from "./Signin.module.scss";
-import {KAKAO_AUTH_URL} from "../share/kakaoAuth"
+import {KAKAO_AUTH_URL,NAVER_AUTH_URL,GOOGLE_AUTH_URL} from "../share/socialAuthUrl"
 
 function SignIn() {
-    const kakaoLogin = () => {
-        console.log(KAKAO_AUTH_URL)
-        window.location.href = KAKAO_AUTH_URL;
+    const loginRequest = (url) => {
+        window.location.href = url;
     }
 
     return (
         <div className={styles.my_main}>
             <h2 className={styles.title}>로그인</h2>
             <div className={styles.button_wrap}>
-                <button onClick={kakaoLogin}>카카오 로그인</button>
-
                 <button
                     onClick={() => {
-                        // 구글 로그인
+                        loginRequest(KAKAO_AUTH_URL)
+                    }}
+                >
+                    카카오 로그인
+                </button>
+                <button
+                    onClick={() => {
+                        loginRequest(GOOGLE_AUTH_URL)
                     }}
                 >
                     GOOGLE
                 </button>
                 <button
                     onClick={() => {
-                        // 네이버 로그인
+                        loginRequest(NAVER_AUTH_URL)
                     }}
                 >
                     NAVER
