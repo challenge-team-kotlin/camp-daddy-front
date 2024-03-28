@@ -12,6 +12,7 @@ import Search from "./pages/search";
 import SignIn from "./pages/sign-in";
 import SignUp from "./pages/sign-up";
 import { getProducts } from "./api/camp-daddy";
+import KakaoAuthHandle from "./components/KakaoAuthHandle"
 
 function App() {
     return (
@@ -24,11 +25,15 @@ function App() {
             <Route path="/product-detail" element={<ProductDetail />} />
             <Route path="/product-list" element={<ProductList />} />
             <Route path="/product-add" element={<ProductAdd />} />
-            <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route
                 path="/my-page/reservation-list-query"
                 element={<ReservationListQuery />}
+            />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route
+                path="/oauth2/callback/kakao"
+                element={<KakaoAuthHandle />}
             />
         </Routes>
     );

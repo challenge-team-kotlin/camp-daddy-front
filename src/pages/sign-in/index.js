@@ -1,18 +1,19 @@
 import Nav from "../../components/molecules/nav";
 import styles from "./Signin.module.scss";
+import {KAKAO_AUTH_URL} from "../share/kakaoAuth"
 
-export default function SignIn() {
+function SignIn() {
+    const kakaoLogin = () => {
+        console.log(KAKAO_AUTH_URL)
+        window.location.href = KAKAO_AUTH_URL;
+    }
+
     return (
         <div className={styles.my_main}>
             <h2 className={styles.title}>로그인</h2>
             <div className={styles.button_wrap}>
-                <button
-                    onClick={() => {
-                        // 카카오 로그인
-                    }}
-                >
-                    KAKAO
-                </button>
+                <button onClick={kakaoLogin}>카카오 로그인</button>
+
                 <button
                     onClick={() => {
                         // 구글 로그인
@@ -32,3 +33,5 @@ export default function SignIn() {
         </div>
     );
 }
+
+export default SignIn;

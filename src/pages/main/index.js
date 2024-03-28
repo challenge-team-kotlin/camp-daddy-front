@@ -14,10 +14,10 @@ export default function Main() {
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
-    getAllProducts().then((data) => {
-      console.log(data)
-      setProducts(data)
-    })
+    // getAllProducts().then((data) => {
+    //   console.log(data)
+    //   setProducts(data)
+    // })
   }, [search])
   return (
     <div>

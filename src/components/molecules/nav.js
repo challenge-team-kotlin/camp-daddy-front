@@ -3,7 +3,8 @@ import icon from "./product_img.png";
 
 export default function Nav() {
     // 로그인 여부
-    const user = false;
+    
+    const user = true;
     return (
         <div className={styles.nav}>
             <button
