@@ -34,6 +34,14 @@ export default function MyPage() {
         >
           리뷰 목록 조회
         </button>
+        <button
+          onClick={() => {
+            localStorage.setItem('access_token', '')
+            window.location.href = "/";
+          }}
+        >
+          로그아웃
+        </button>
       </div>
       <Nav />
     </div>
