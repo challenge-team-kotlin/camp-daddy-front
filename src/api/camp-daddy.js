@@ -76,3 +76,8 @@ export const getMemberProduct = async (id) => {
 export const getCategory = async () => {
     return (await apiClient.get(`/products/categories`)).data
 }
+
+
+export const getMyReservationList = async () => {
+    return (await apiClient.get(`/reservations/me`))
+}
