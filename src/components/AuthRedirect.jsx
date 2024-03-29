@@ -9,9 +9,8 @@ const AuthRedirect = () => {
 
   const redirect = async () => {
     if(token){
-      alert(token)
-      // token local storage 저장
-      // 메인페이지 이동
+      localStorage.setItem('access_token', token)
+      window.location.href = "/";
     }else {
       // sign up form
       window.location.href = "/sign-up"+"?email="+email+"&provider="+provider+"&providerId="+providerId;

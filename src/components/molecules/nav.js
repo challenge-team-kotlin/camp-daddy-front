@@ -4,7 +4,7 @@ import icon from "./product_img.png";
 export default function Nav() {
     // 로그인 여부
     
-    const user = true;
+    const user = localStorage.getItem("access-token") == null;
     return (
         <div className={styles.nav}>
             <button
