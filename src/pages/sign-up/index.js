@@ -1,41 +1,38 @@
 import styles from "./Signup.module.scss";
-import axios from 'axios'
 import { useState } from "react";
+import {signUp} from "../../api/camp-daddy";
 
 
 export default function SignUp() {
-
     let url = new URL(window.location.href)
     let email = url.searchParams.get('email')
     let provider = url.searchParams.get('provider')
     let providerId = url.searchParams.get('providerId')
-  
+    const [user_name, setUserName] = useState('');
+    const [user_nickname, setUserNickname] = useState('');
+    const saveUserName = event => {
+        setUserName(event.target.value);
+    };
+
+    const saveUserNickname = event => {
+        setUserNickname(event.target.value);
+    };
+
+    const data = {
+        email: email,
+        provider: provider,
+        providerId: providerId,
+        name: user_name,
+        nickname: user_nickname
+    }
+
     const signUpRequest =  () => {
-        axios
-        .post(`${process.env.REACT_APP_API_URL}/signup`, {
-            email: email,
-            provider: provider,
-            providerId: providerId,
-            name: user_name,
-            nickname: user_nickname
-        })
+        signUp(data)
         .then((res) => {
             localStorage.setItem('access_token', res.headers['authorization'])
             window.location.href = "/";
         })
     }
-
-    const [user_name, setUserName] = useState('');
-    const [user_nickname, setUserNickname] = useState('');
-
-
-    const saveUserName = event => {
-        setUserName(event.target.value);
-      };
-    
-      const saveUserNickname = event => {
-        setUserNickname(event.target.value);
-      };
 
     return (
         <div className={styles.my_main}>
@@ -51,7 +48,7 @@ export default function SignUp() {
                 </div>
                 <div className={styles.input_box} style={{paddingBottom: 50}}>
                     <p>닉네임</p>
-                    <input type="text" onChange={saveUserNickname} value={user_nickname} maxLength={11}/>
+                    <input type="text" onChange={saveUserNickname} value={user_nickname} maxLength={12}/>
                 </div>
                 <button
                     onClick={() => {

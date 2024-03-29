@@ -3,18 +3,12 @@ import { apiClient } from "./client";
 
 
 export const signUp = async (data) => {
-    return apiClient.post("/members/signup", {
+    return apiClient.post("/signup", {
+        email: data.email,
         name: data.name,
-        email: data.email,
-        nickName: data.nickName,
-        phoneNumber: data.phoneNumber
-    })
-}
-
-export const login = async (data) => {
-    return apiClient.post("/members/login", {
-        email: data.email,
-        password: data.password
+        nickname: data.nickname,
+        provider: data.provider,
+        providerId: data.providerId
     })
 }
 
@@ -24,8 +18,7 @@ export const memberInfo = async (id) => {
 
 export const memberInfoUpdate = async (id, data) => {
     return apiClient.put(`/members/${id}`, {
-        nickName: data.name,
-        phoneNumber: data.phoneNumber
+        nickname: data.nickname
     })
 }
 

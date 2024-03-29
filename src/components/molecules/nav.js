@@ -1,5 +1,9 @@
 import styles from "./Molecules.module.scss";
-import icon from "./product_img.png";
+import { AiOutlineUser } from "react-icons/ai";
+import { IoChatboxOutline } from "react-icons/io5";
+import { FiSearch } from "react-icons/fi";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { AiFillHome } from "react-icons/ai";
 
 export default function Nav() {
     // 로그인 여부
@@ -17,21 +21,21 @@ export default function Nav() {
                 }
                 }
             >
-                <img src={icon} alt=""/>
+                <IoMdAddCircleOutline size={45}/>
             </button>
             <button
                 onClick={() => {
                     window.location.href = "/search";
                 }}
             >
-                <img src={icon} alt=""/>
+                <FiSearch size={45}/>
             </button>
             <button
                 onClick={() => {
                     window.location.href = "/";
                 }}
             >
-                <img src={icon} alt=""/>
+                <AiFillHome size={45}/>
             </button>
             <button
                 onClick={() => {
@@ -42,7 +46,7 @@ export default function Nav() {
                     }
                 }}
             >
-                <img src={icon} alt=""/>
+                <IoChatboxOutline size={45}/>
             </button>
             <button
                 onClick={() => {
@@ -53,7 +57,7 @@ export default function Nav() {
                     }
                 }}
             >
-                <img src={icon} alt=""/>
+                <AiOutlineUser size={45}/>
             </button>
         </div>
     );
