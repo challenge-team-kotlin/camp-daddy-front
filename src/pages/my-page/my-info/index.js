@@ -55,10 +55,6 @@ export default function MyInfo() {
                     onClick={infoUpdate}
                 >수정하기
                 </button>
-                <button
-                    onClick={}
-                >중복확인
-                </button>
             </div>
             <Nav/>
         </div>
