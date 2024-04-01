@@ -6,7 +6,6 @@ function SignIn() {
     const loginRequest = (url) => {
         window.location.href = url;
     }
-
     return (
         <div className={styles.my_main}>
             <h2 className={styles.title}>로그인</h2>
@@ -15,22 +14,34 @@ function SignIn() {
                     onClick={() => {
                         loginRequest(KAKAO_AUTH_URL)
                     }}
+                    style={{
+                        backgroundImage: `url('/images/kakao_login_large_wide.png')`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'cover',
+                    }}
                 >
-                    카카오 로그인
                 </button>
                 <button
                     onClick={() => {
                         loginRequest(GOOGLE_AUTH_URL)
                     }}
-                >
-                    GOOGLE
+                    style={{
+                        backgroundImage: `url('/images/web_neutral_rd_na@2x.png')`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'contain'
+                    }}
+                >Google
                 </button>
                 <button
                     onClick={() => {
                         loginRequest(NAVER_AUTH_URL)
                     }}
-                >
-                    NAVER
+                    style={{
+                        backgroundImage: `url('/images/btnG_아이콘원형.png')`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'contain',
+                    }}
+                >NAVER
                 </button>
             </div>
             <Nav />
