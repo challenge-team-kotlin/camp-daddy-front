@@ -39,6 +39,7 @@ export default function MyPage() {
             localStorage.setItem('access_token', '')
             window.location.href = "/";
           }}
+          className={styles.logout_btn}
         >
           로그아웃
         </button>

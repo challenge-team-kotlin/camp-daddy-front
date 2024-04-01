@@ -25,13 +25,19 @@ export default function SignUp() {
         name: user_name,
         nickname: user_nickname
     }
-
+    const hangulRegex = /([^가-힣\x20])/i
     const signUpRequest =  () => {
-        signUp(data)
-        .then((res) => {
-            localStorage.setItem('access_token', res.headers['authorization'])
-            window.location.href = "/";
-        })
+        if (user_name.length < 2 || user_name.length > 10 || /\s/.test(user_name) || hangulRegex.test(user_name)) {
+            alert("이름은 자음, 모음만 입력 금지, 최소 2글자 최대 10글자이며, 띄어쓰기가 불가능합니다. 다시 입력해주세요.")
+        } else if(user_nickname.length < 2 || user_nickname.length > 10 || /\s/.test(user_nickname) || hangulRegex.test(user_nickname)) {
+            alert("닉네임은 자음, 모음만 입력 금지, 최소 2글자 최대 10글자이며, 띄어쓰기가 불가능합니다. 다시 입력해주세요.")
+        } else {
+            signUp(data)
+                .then((res) => {
+                    localStorage.setItem('access_token', res.headers['authorization'])
+                    window.location.href = "/";
+                })
+        }
     }
 
     return (
