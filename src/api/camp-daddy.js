@@ -28,7 +28,7 @@ export const deleteMember = async (id) => {
 
 export const getAllProducts = async () => {
     try {
-        return (await apiClient.get(`/products/list`)).data.content
+        return (await apiClient.get(`/products/list`))
     } catch (e) {
         console.log(e)
     }
@@ -73,4 +73,8 @@ export const getCategory = async () => {
 
 export const getMyReservationList = async () => {
     return (await apiClient.get(`/reservations/me`))
+}
+
+export const patchReservationStatus = async (id ,status) => {
+    return apiClient.patch(`/reservations/${id}?reservationStatus=${status}`)
 }
