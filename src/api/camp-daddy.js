@@ -32,8 +32,7 @@ export const checkNickname = async (nickname) => {
 
 export const getAllProducts = async () => {
     try {
-        return (await apiClient.get(`/products/list`))
-<<<<<<< HEAD
+        return (await apiClient.get(`/products/list`)).data.content
     } catch (e) {
         console.log(e)
     }
@@ -42,8 +41,6 @@ export const getAllProducts = async () => {
 export const getProduct = async (id) => {
     try {
         return (await apiClient.get(`/products/${id}`)).data
-=======
->>>>>>> 616e3bf9ffe7c5e2f7c7cbce5fbed3380fce9444
     } catch (e) {
         console.log(e)
     }
@@ -90,14 +87,10 @@ export const getMyReservationList = async () => {
     return (await apiClient.get(`/reservations/me`))
 }
 
-<<<<<<< HEAD
 export const getReview = async (id) => {
     return (await apiClient.get(`/reviews/products/${id}`)).data
 }
 
 export const patchReservationStatus = async (id, status) => {
-=======
-export const patchReservationStatus = async (id ,status) => {
->>>>>>> 616e3bf9ffe7c5e2f7c7cbce5fbed3380fce9444
     return apiClient.patch(`/reservations/${id}?reservationStatus=${status}`)
 }

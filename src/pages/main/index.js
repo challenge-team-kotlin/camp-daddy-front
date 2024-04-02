@@ -14,6 +14,7 @@ export default function Main() {
     const fetchData = async () => {
       try {
         const data = await getAllProducts();
+        console.log(data)
         setProducts(data);
       } catch (error) {
         console.error("Error fetching products:", error);
