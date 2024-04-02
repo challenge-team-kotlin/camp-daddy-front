@@ -106,9 +106,6 @@ export default function ReservationListQuery() {
                   </button>
                 </div>
               </div>
-              <div className={styles.sale_btn}>
-                <button onClick={() => { }}>수정하기</button>
-              </div>
             </div>
             <hr />
           </div>
