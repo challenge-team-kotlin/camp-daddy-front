@@ -26,6 +26,10 @@ export const deleteMember = async (id) => {
     return apiClient.delete(`/members/${id}`)
 }
 
+export const checkNickname = async (nickname) => {
+    return apiClient.get(`/check_nickname?nickname=${nickname}`)
+}
+
 export const getAllProducts = async () => {
     try {
         return (await apiClient.get(`/products/list`))
