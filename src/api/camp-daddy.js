@@ -75,6 +75,11 @@ export const getMyReservationList = async () => {
     return (await apiClient.get(`/reservations/me`))
 }
 
+export const getProductReservationList = async (productId) => {
+    return (await apiClient.get(`/reservations/products/${productId}`))
+}
+
+
 export const patchReservationStatus = async (id ,status) => {
     return apiClient.patch(`/reservations/${id}?reservationStatus=${status}`)
 }
