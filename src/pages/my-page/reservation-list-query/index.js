@@ -1,16 +1,40 @@
 import Nav from "../../../components/molecules/nav";
 import styles from "../Mypage.module.scss";
-import { getMyReservationList } from "../../../api/camp-daddy";
+import {
+  getMyReservationList,
+  patchReservationStatus
+} from "../../../api/camp-daddy";
 import React, { useState, useEffect } from "react";
 
 export default function ReservationListQuery() {
   const [datas, setDatas] = useState([]);
+  const [selectedValues, setSelectedValues] = useState({});
+
+  const handleSelect = (e, reservationId) => {
+    const value = e.target.value;
+    setSelectedValues((prevState) => ({
+      ...prevState,
+      [reservationId]: value,
+    }));
+  };
 
   useEffect(() => {
     const fetchReservationData = async () => {
       try {
         const res = await getMyReservationList();
+
+        res.data.forEach((data) => {
+          if (!data.productImageUrl) {
+            data.productImageUrl = "../images/product_img.png"
+          }
+        });
+
         setDatas(res.data);
+        const initialSelectedValues = {};
+        res.data.forEach((data) => {
+          initialSelectedValues[data.reservationId] = "";
+        });
+        setSelectedValues(initialSelectedValues);
       } catch (error) {
         console.error("Error fetching reservation data:", error);
       }
@@ -18,6 +42,23 @@ export default function ReservationListQuery() {
 
     fetchReservationData();
   }, []);
+
+  function patchReservation(reservationId) {
+    const selectedValue = selectedValues[reservationId];
+    if (!selectedValue) {
+      alert("예약 상태를 선택해주세요");
+      return;
+    }
+    console.log(reservationId, selectedValue);
+    patchReservationStatus(reservationId, selectedValue).then((res) => {
+      if (res.status === 200) {
+        window.location.reload();
+
+      } else {
+        alert('에러 발생?')
+      }
+    });
+  }
 
   return (
     <div className={styles.my_main}>
@@ -27,7 +68,7 @@ export default function ReservationListQuery() {
           <div key={data.reservationId}>
             <hr />
             <div className={styles.sale_product}>
-              <img src="../images/product_img.png" alt="" />
+              <img src={data.productImageUrl} alt="" />
               <div>
                 <div>
                   <span>상품명 : {data.productTitle}</span>
@@ -40,12 +81,33 @@ export default function ReservationListQuery() {
                     날짜 : {data.startDate}~{data.endDate}
                   </span>
                 </div>
-                <div>
+                <div className={styles.sale_btn}>
                   <span>예약 상황 : {data.reservationStatus}</span>
+                  <select
+                    onChange={(e) => handleSelect(e, data.reservationId)}
+                    value={selectedValues[data.reservationId]}
+                  >
+                    <option value="" disabled>
+                      예약 상태
+                    </option>
+                    {data.reservationStatus === "요청 승인" && (
+                      <option value="RENT">대여중</option>
+                    )}
+                    {data.reservationStatus === "대여 요청" && (
+                      <option value="CANCELED">취소</option>
+                    )}
+                  </select>
+                  <button
+                    onClick={() => {
+                      patchReservation(data.reservationId);
+                    }}
+                  >
+                    상태 수정
+                  </button>
                 </div>
               </div>
               <div className={styles.sale_btn}>
-                <button onClick={() => {}}>수정하기</button>
+                <button onClick={() => { }}>수정하기</button>
               </div>
             </div>
             <hr />

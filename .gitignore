@@ -24,3 +24,5 @@ yarn-error.log*
 
 # 인텔리제이 vcs
 .idea
+
+.env

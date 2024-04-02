@@ -28,7 +28,15 @@ export const deleteMember = async (id) => {
 
 export const getAllProducts = async () => {
     try {
-        return (await apiClient.get(`/products/list`)).data.content
+        return (await apiClient.get(`/products/list`))
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const getProduct = async (id) => {
+    try {
+        return (await apiClient.get(`/products/${id}`)).data
     } catch (e) {
         console.log(e)
     }
@@ -43,7 +51,7 @@ export const postProduct = async (data) => {
         title: data.title,
         content: data.content,
         pricePerDay: data.price,
-        images: data.img,
+        images: data.images,
         category: data.category
     })
 }
@@ -63,7 +71,7 @@ export const deleteProduct = async (id) => {
 }
 
 export const getMemberProduct = async (id) => {
-    return apiClient.get(`/products/members/${id}`)
+    return (await apiClient.get(`/products/members/${id}`)).data
 }
 
 export const getCategory = async () => {
@@ -73,4 +81,12 @@ export const getCategory = async () => {
 
 export const getMyReservationList = async () => {
     return (await apiClient.get(`/reservations/me`))
+}
+
+export const getReview = async (id) => {
+    return (await apiClient.get(`/reviews/products/${id}`)).data
+}
+
+export const patchReservationStatus = async (id, status) => {
+    return apiClient.patch(`/reservations/${id}?reservationStatus=${status}`)
 }

@@ -20,9 +20,9 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/my-page" element={<MyPage />} />
             <Route path="/my-page/my-info" element={<MyInfo />} />
-            <Route path="/my-page/sale-list-query" element={<SaleListQuery />} />
+            <Route path="/my-page/sale-list-query/:id" element={<SaleListQuery />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/product-detail" element={<ProductDetail />} />
+            <Route path="/products/:id" element={<ProductDetail />} />
             <Route path="/product-list" element={<ProductList />} />
             <Route path="/product-add" element={<ProductAdd />} />
             <Route path="/sign-up" element={<SignUp />} />
