@@ -78,6 +78,13 @@ export default function SaleListQuery() {
                 예약 확인
               </button>
               <button
+                onClick={() => {
+                  window.location.href = `/my-page/product-reservation-list/${sale.productId}`;
+                }}
+              >
+                예약 확인
+              </button>
+              <button
                 className={styles.red}
                 onClick={() => handleDeleteProduct(sale.productId)}
               >
