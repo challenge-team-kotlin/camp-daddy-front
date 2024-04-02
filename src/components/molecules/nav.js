@@ -7,7 +7,6 @@ import { AiFillHome } from "react-icons/ai";
 
 export default function Nav() {
     // 로그인 여부
-    
     const user = !localStorage.getItem("access_token");
     return (
         <div className={styles.nav}>
