@@ -18,7 +18,6 @@ export default function Search() {
 
   useEffect(() => {
     getCategory().then((data) => {
-      console.log(data);
       setCategory(data);
     });
   }, []);

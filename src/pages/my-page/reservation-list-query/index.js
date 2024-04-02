@@ -24,7 +24,7 @@ export default function ReservationListQuery() {
         const res = await getMyReservationList();
 
         res.data.forEach((data) => {
-          if(!data.productImageUrl){
+          if (!data.productImageUrl) {
             data.productImageUrl = "../images/product_img.png"
           }
         });
@@ -53,9 +53,9 @@ export default function ReservationListQuery() {
     patchReservationStatus(reservationId, selectedValue).then((res) => {
       if (res.status === 200) {
         window.location.reload();
-        
-      }else{
-        alert('에러 발생?') 
+
+      } else {
+        alert('에러 발생?')
       }
     });
   }
@@ -105,6 +105,9 @@ export default function ReservationListQuery() {
                     상태 수정
                   </button>
                 </div>
+              </div>
+              <div className={styles.sale_btn}>
+                <button onClick={() => { }}>수정하기</button>
               </div>
             </div>
             <hr />
