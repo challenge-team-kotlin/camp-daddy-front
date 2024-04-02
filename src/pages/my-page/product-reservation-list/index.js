@@ -6,6 +6,7 @@ import {
 } from "../../../api/camp-daddy";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { handleImgError } from "../../../components/handleImage";
 
 export default function ProductReservationList() {
   const [datas, setDatas] = useState([]);
@@ -69,7 +70,7 @@ export default function ProductReservationList() {
           <div key={data.reservationId}>
             <hr />
             <div className={styles.sale_product}>
-              <img src={data.productImageUrl} alt="" />
+              <img onError={handleImgError} src={data.productImageUrl} alt="" />
               <div>
                 <div>
                   <span>상품명 : {data.productTitle}</span>

@@ -2,9 +2,10 @@ import Nav from "../../../components/molecules/nav";
 import styles from "../Mypage.module.scss";
 import {
   getMyReservationList,
-  patchReservationStatus
+  patchReservationStatus,
 } from "../../../api/camp-daddy";
 import React, { useState, useEffect } from "react";
+import { handleImgError } from "../../../components/handleImage";
 
 export default function ReservationListQuery() {
   const [datas, setDatas] = useState([]);
@@ -25,7 +26,7 @@ export default function ReservationListQuery() {
 
         res.data.forEach((data) => {
           if (!data.productImageUrl) {
-            data.productImageUrl = "../images/product_img.png"
+            data.productImageUrl = "../images/product_img.png";
           }
         });
 
@@ -53,9 +54,8 @@ export default function ReservationListQuery() {
     patchReservationStatus(reservationId, selectedValue).then((res) => {
       if (res.status === 200) {
         window.location.reload();
-
       } else {
-        alert('에러 발생?')
+        alert("에러 발생?");
       }
     });
   }
@@ -68,7 +68,7 @@ export default function ReservationListQuery() {
           <div key={data.reservationId}>
             <hr />
             <div className={styles.sale_product}>
-              <img src={data.productImageUrl} alt="" />
+              <img onError={handleImgError} src={data.productImageUrl} alt="" />
               <div>
                 <div>
                   <span>상품명 : {data.productTitle}</span>

@@ -4,6 +4,7 @@ import styles from "./ProductList.module.scss";
 import { useLocation } from "react-router-dom";
 import { apiClient } from "../../api/client";
 import { getProducts } from "../../api/camp-daddy";
+import { handleImgError } from "../../components/handleImage";
 
 export default function ProductList() {
   const location = useLocation();
@@ -51,7 +52,7 @@ export default function ProductList() {
               window.location.href = `/product-detail/${product.id}`;
             }}
           >
-            <img src={product.image} alt={product.title} />
+            <img onError={handleImgError} src={product.image} alt={product.title} />
             <div>
               <p>{product.title}</p>
               <span>{product.price}</span>
