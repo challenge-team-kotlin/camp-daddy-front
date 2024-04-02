@@ -16,7 +16,6 @@ export default function ProductDetail() {
         const productData = await getProduct(id);
         setProduct(productData);
         const reviewData = await getReview(id);
-        console.log(reviewData)
         setReviews(reviewData)
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -32,7 +31,7 @@ export default function ProductDetail() {
         <>
           <div className={styles.title}>{product.title}</div>
           <div className={styles.banner}>
-            <img src={product.imageUrl} alt={product.title} />
+            <img src={product.imageUrl} onerror={"this.onerror=null; this.src='./images/product_img';"} />
             <span>{product.content}</span>
           </div>
           <div className={styles.btn_box}>

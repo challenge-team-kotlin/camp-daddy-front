@@ -1,8 +1,8 @@
 import Nav from "../../../components/molecules/nav";
 import styles from "../Mypage.module.scss";
-import {checkNickname, memberInfo, memberInfoUpdate} from "../../../api/camp-daddy";
-import {useState, useEffect} from "react";
-import {jwtDecode} from "jwt-decode";
+import { checkNickname, memberInfo, memberInfoUpdate } from "../../../api/camp-daddy";
+import { useState, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 
 export default function MyInfo() {
     const [name, setName] = useState('');
@@ -19,7 +19,7 @@ export default function MyInfo() {
     const getMemberInfo = () => {
         memberInfo(decode.sub)
             .then((res) => {
-                const {name, nickname} = res.data
+                const { name, nickname } = res.data
                 setName(name);
                 setNickname(nickname);
             })
@@ -31,7 +31,7 @@ export default function MyInfo() {
             alert("수정 완료")
             window.location.href = "/my-page"
         } catch (e) {
-            console.log("수정 실패")
+            alert("수정 실패")
         }
     }
 
@@ -45,13 +45,13 @@ export default function MyInfo() {
             alert("닉네임은 자음, 모음만 입력 금지, 최소 2글자 최대 10글자이며, 띄어쓰기가 불가능합니다. 다시 입력해주세요.");
         } else {
             checkNickname(nickname).then((res) => {
-                    setIsNicknameAvailable(!res.data);
-                    if (res.data) {
-                        alert("중복된 닉네임입니다.");
-                    } else {
-                        alert("사용 가능한 닉네임입니다.");
-                    }
+                setIsNicknameAvailable(!res.data);
+                if (res.data) {
+                    alert("중복된 닉네임입니다.");
+                } else {
+                    alert("사용 가능한 닉네임입니다.");
                 }
+            }
             );
         }
     }
@@ -62,11 +62,11 @@ export default function MyInfo() {
             <div className={styles.info_wrap}>
                 <div className={styles.input_box}>
                     <p>이름</p>
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} disabled/>
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} disabled />
                 </div>
                 <div className={styles.input_box}>
                     <p>닉네임</p>
-                    <input type="text" value={nickname} onChange={saveUserNickname}/>
+                    <input type="text" value={nickname} onChange={saveUserNickname} />
                 </div>
                 <button
                     onClick={() => findNickname(nickname)}
@@ -78,7 +78,7 @@ export default function MyInfo() {
                 >수정하기
                 </button>
             </div>
-            <Nav/>
+            <Nav />
         </div>
     );
 }

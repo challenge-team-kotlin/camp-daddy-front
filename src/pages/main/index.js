@@ -5,6 +5,7 @@ import Nav from "../../components/molecules/nav";
 import styles from "./Main.module.scss";
 import { getAllProducts } from "../../api/camp-daddy";
 import { Link } from "react-router-dom";
+import { handleImgError } from "../../components/handleImage";
 
 export default function Main() {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,6 @@ export default function Main() {
     const fetchData = async () => {
       try {
         const data = await getAllProducts();
-        console.log(data)
         setProducts(data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -73,7 +73,7 @@ export default function Main() {
           {products.map((product, index) => (
             <div key={index} className={styles.product_list}>
               <Link to={`/products/${product.productId}`} className={styles.left_box}>
-                <img src={product.imageUrl} alt={product.title} className={styles.product_image} />
+                <img src={product.imageUrl} alt="" onError={handleImgError} className={styles.product_image} />
                 <div>
                   <p>{product.title}</p>
                   <span>{product.pricePerDay}</span>
