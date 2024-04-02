@@ -1,13 +1,14 @@
 import Nav from "../../../components/molecules/nav";
 import styles from "../Mypage.module.scss";
 import {
-  getMyReservationList,
+  getProductReservationList,
   patchReservationStatus,
 } from "../../../api/camp-daddy";
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { handleImgError } from "../../../components/handleImage";
 
-export default function ReservationListQuery() {
+export default function ProductReservationList() {
   const [datas, setDatas] = useState([]);
   const [selectedValues, setSelectedValues] = useState({});
 
@@ -19,10 +20,11 @@ export default function ReservationListQuery() {
     }));
   };
 
+  let { productId } = useParams();
   useEffect(() => {
     const fetchReservationData = async () => {
       try {
-        const res = await getMyReservationList();
+        const res = await getProductReservationList(productId);
 
         res.data.forEach((data) => {
           if (!data.productImageUrl) {
@@ -42,7 +44,7 @@ export default function ReservationListQuery() {
     };
 
     fetchReservationData();
-  }, []);
+  }, [productId]);
 
   function patchReservation(reservationId) {
     const selectedValue = selectedValues[reservationId];
@@ -62,7 +64,7 @@ export default function ReservationListQuery() {
 
   return (
     <div className={styles.my_main}>
-      <h2 className={styles.title}>예약 목록 조회</h2>
+      <h2 className={styles.title}>판매상품 예약 목록 조회</h2>
       <div className={styles.sale_product_wrap}>
         {datas.map((data, index) => (
           <div key={data.reservationId}>
@@ -90,12 +92,18 @@ export default function ReservationListQuery() {
                     <option value="" disabled>
                       예약 상태
                     </option>
-                    {data.reservationStatus === "요청 승인" && (
-                      <option value="RENT">대여중</option>
+                    {data.reservationStatus === "대여 요청" && (
+                      <option value="CONFIRM">요청 승인</option>
                     )}
                     {data.reservationStatus === "대여 요청" && (
                       <option value="CANCELED">취소</option>
                     )}
+                    {data.reservationStatus === "요청 승인" && (
+                      <option value="CANCELED">취소</option>
+                    )}
+                    {data.reservationStatus === "대여중" && (
+                        <option value="END">대여 종료</option>
+                      ) && <option value="CANCELED">취소</option>}
                   </select>
                   <button
                     onClick={() => {

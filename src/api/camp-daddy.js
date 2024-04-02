@@ -87,6 +87,11 @@ export const getMyReservationList = async () => {
     return (await apiClient.get(`/reservations/me`))
 }
 
+
+export const getProductReservationList = async (productId) => {
+    return (await apiClient.get(`/reservations/products/${productId}`))
+}
+
 export const getReview = async (id) => {
     return (await apiClient.get(`/reviews/products/${id}`)).data
 }

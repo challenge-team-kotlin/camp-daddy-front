@@ -10,7 +10,6 @@ AWS.config.update({
 const s3 = new AWS.S3();
 
 async function uploadPhotoToS3(file, bucketName) {
-    console.log(`${process.env.REACT_APP_S3_ACCESS_KEY}`)
     const fileExtension = file.name.slice(file.name.lastIndexOf('.')).toLowerCase();
     if (!['.jpeg', '.png', '.jpg'].includes(fileExtension)) {
         alert('jpeg, png, jpg 파일만 업로드가 가능합니다.');
@@ -29,7 +28,6 @@ async function uploadPhotoToS3(file, bucketName) {
 
     try {
         const data = await s3.upload(params).promise();
-        console.log('File uploaded successfully:', data.Location);
         return data.Location; // 업로드된 파일의 URL 반환
     } catch (error) {
         console.error('Error uploading file:', error);

@@ -4,6 +4,7 @@ import Main from "./pages/main";
 import MyPage from "./pages/my-page";
 import MyInfo from "./pages/my-page/my-info";
 import ReservationListQuery from "./pages/my-page/reservation-list-query";
+import ProductReservationList from "./pages/my-page/product-reservation-list";
 import SaleListQuery from "./pages/my-page/sale-list-query";
 import ProductAdd from "./pages/product-add";
 import ProductDetail from "./pages/product-detail";
@@ -20,7 +21,7 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/my-page" element={<MyPage />} />
             <Route path="/my-page/my-info" element={<MyInfo />} />
-            <Route path="/my-page/sale-list-query/:id" element={<SaleListQuery />} />
+            <Route path="/my-page/sale-list-query" element={<SaleListQuery />} />
             <Route path="/search" element={<Search />} />
             <Route path="/products/:id" element={<ProductDetail />} />
             <Route path="/product-list" element={<ProductList />} />
@@ -32,6 +33,10 @@ function App() {
             />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/oauth2/redirect" element={<AuthRedirect />} />
+            <Route
+                path="/my-page/product-reservation-list/:productId"
+                element={<ProductReservationList />}
+            />
         </Routes>
     );
 }

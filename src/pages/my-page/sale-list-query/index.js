@@ -3,16 +3,19 @@ import Nav from "../../../components/molecules/nav";
 import styles from "../Mypage.module.scss";
 import { useParams } from "react-router-dom";
 import { getMemberProduct, deleteProduct } from "../../../api/camp-daddy";
+import { jwtDecode } from "jwt-decode";
+import { handleImgError } from "../../../components/handleImage";
 
 export default function SaleListQuery() {
   const { id } = useParams();
   const [sales, setSales] = useState([]);
-
+  const decode = jwtDecode(localStorage.getItem('access_token'))
   useEffect(() => {
     const fetchSales = async () => {
       try {
+        console.log(decode.sub)
         // 백엔드에서 사용자의 판매 상품 목록을 가져오는 API 호출
-        const userSales = await getMemberProduct(id);
+        const userSales = await getMemberProduct(decode.sub);
         setSales(userSales);
       } catch (error) {
         console.error("Error fetching user sales:", error);
@@ -50,7 +53,7 @@ export default function SaleListQuery() {
                 window.location.href = `/products/${sale.productId}`;
               }}
             >
-              <img src={sale.presentationImage[0]} alt="" />
+              <img onError={handleImgError} src={sale.presentationImage[0]} alt="" />
               <div>
                 <p>{sale.title}</p>
                 <div>
@@ -60,6 +63,20 @@ export default function SaleListQuery() {
               </div>
             </button>
             <div className={styles.sale_btn}>
+              <button
+                onClick={() => {
+                  window.location.href = `/my-page/product-reservation-list/${sale.productId}`;
+                }}
+              >
+                예약 확인
+              </button>
+              <button
+                onClick={() => {
+                  window.location.href = `/my-page/product-reservation-list/${sale.productId}`;
+                }}
+              >
+                예약 확인
+              </button>
               <button
                 className={styles.red}
                 onClick={() => handleDeleteProduct(sale.productId)}

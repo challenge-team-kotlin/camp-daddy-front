@@ -24,6 +24,7 @@ export default function ProductAdd() {
         console.error('Error fetching categories:', error);
       }
     }
+
     fetchCategories();
   }, []);
 
@@ -82,21 +83,27 @@ export default function ProductAdd() {
   return (
     <div className={styles.my_main}>
       <h2 className={styles.title}>상품 추가</h2>
-      <div style={{ padding: 20 }}>
-        <input type="file" onInput={handleImageChange} multiple />
-      </div>
-      <select name="category" onInput={handleInputChange}>
-        <option value="">카테고리 선택</option>
-        {category.map((cat, i) => (
-          <option key={i} value={cat}>{cat}</option>
-        ))}
-      </select>
-      <div className={styles.add}>
-        <input type="text" placeholder="제목을 입력해 주세요." value={title} onInput={handleTitleChange} />
-        <textarea rows={10} cols={10} placeholder="내용을 입력해 주세요" value={content} onInput={handleContentChange} />
-        <input type="text" placeholder="가격을 입력해 주세요." value={price} onInput={handlePriceChange} />
-        <button onClick={handleSubmit}>작성하기</button>
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      <div className={styles.add_wrap}>
+        <div className={styles.choice}>
+          <input type="file" onInput={handleImageChange} multiple />
+        </div>
+        <div className={styles.category_box}>
+          <select name="category" onInput={handleInputChange}>
+            <option value="">카테고리 선택</option>
+            {category.map((cat, i) => (
+              <option key={i} value={cat}>{cat}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className={styles.add}>
+          <input type="text" placeholder="제목을 입력해 주세요." value={title} onInput={handleTitleChange} />
+          <textarea rows={10} cols={10} placeholder="내용을 입력해 주세요" value={content}
+            onInput={handleContentChange} />
+          <input type="text" placeholder="가격을 입력해 주세요." value={price} onInput={handlePriceChange} />
+          <button onClick={handleSubmit}>작성하기</button>
+          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        </div>
       </div>
       <Nav />
     </div>
