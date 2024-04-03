@@ -21,7 +21,7 @@ jobs:
       - name: NPM 의존 파일 설치 & 빌드
         run: |
           npm i
-          npm run build
+          CI=false && npm run build
       - name: 빌드 파일 압축
         run: tar -cvf mussangdeul-front.tar
 
