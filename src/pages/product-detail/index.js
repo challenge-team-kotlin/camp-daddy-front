@@ -14,17 +14,32 @@ export default function ProductDetail() {
   const [endDate, setEndDate] = useState('');
 
   const insertReservation = async (productId) => {
+    if(!startDate || !endDate ){
+      alert('날짜를 입력해주세요.')
+      return
+    };
+
     const data = {
       productId : productId,
       startDate : startDate,
       endDate : endDate
-    }
-    createReservation(data).then((res) => {
+    };
+
+    return createReservation(data).then((res) => {
+      console.log(res)
       if(res.status == 201){
         alert("성공적으로 예약을 요청하였습니다.")
       }
-      console.log(res)
+    
     })
+    .catch((e) => {
+      if(e.response.data.errorId == 4002){
+        alert("이미 예약이 된 날짜에요")  
+      }else{
+        alert("예약 실패")  
+      }
+      
+    });
   };
 
   useEffect(() => {
