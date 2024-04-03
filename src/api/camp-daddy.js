@@ -103,3 +103,7 @@ export const patchReservationStatus = async (id, status) => {
 export const createReservation = async (data) => {
     return apiClient.post(`/reservations`,data)
 }
+
+export const getChatRoom = async (id) => {
+    return apiClient.get(`/chatroom/${id}`)
+}

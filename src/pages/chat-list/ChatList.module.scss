@@ -1,0 +1,71 @@
+.my_main {
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #000;
+  padding: 20px 0 0 20px;
+  text-shadow: 0 6px 3px rgba(0, 0, 0, 0.3);
+}
+
+.chat_wrap {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+
+  .chatItem {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.23);
+
+  .chatItem:hover {
+    border: 3px solid #007bff;
+    }
+
+  .productImage {
+    flex: 0 0 auto;
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .chatDetails {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+  .infoAndDate{
+    flex: 1 1 auto;
+    display: flex;
+    .userInfo {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .lastChatDate {
+      font-size: 15px;
+      margin-left: auto;
+    }
+  }
+    .lastChatMessage {
+      font-size: 20px;
+      color: #333;
+    }
+  }
+  }
+}
+

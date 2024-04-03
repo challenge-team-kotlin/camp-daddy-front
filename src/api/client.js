@@ -18,12 +18,10 @@ apiClient.interceptors.request.use((config) => {
   return config;
 });
 
-
-
 apiClient.interceptors.response.use((config) => {
   return config
 }, (e) => {
-  if (e.response.data.errorId == 9001) {
+  if (e.response.data.errorId === 9001) {
     localStorage.setItem('access_token', '')
     alert("로그인을 재시도해주세요.")
     window.location.href = "/sign-in"
@@ -31,4 +29,3 @@ apiClient.interceptors.response.use((config) => {
     throw e
   }
 })
-
