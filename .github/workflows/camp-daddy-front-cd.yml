@@ -47,6 +47,5 @@ jobs:
           key: ${{ secrets.AWS_SSH_KEY }}
           envs: GITHUB_SHA
           script: |
-            sudo apt update
             tar -xvf mussangdeul-front.tar.gz
             cd mussangdeul-front && serve -sn build
