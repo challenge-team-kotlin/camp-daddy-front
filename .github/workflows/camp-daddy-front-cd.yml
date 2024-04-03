@@ -12,7 +12,6 @@ jobs:
       - name: 레포지토리 체크아웃
         uses: actions/checkout@v2
 
-
       - name: NPM 의존 파일 설치 & 빌드
         run: |
           npm i
@@ -20,12 +19,9 @@ jobs:
 
       - name: .env 파일 생성
         run: |
-          jq -r 'to_entries | map(select(.key != "AWS_SSH_KEY") | "\(.key)=\(.value|tostring)") | .[]' <<< "$SECRETS_CONTEXT" > ./build/.env
+          jq -r 'to_entries | map(select(.key != "AWS_SSH_KEY") | "\(.key)=\(.value|tostring)") | .[]' <<< "$SECRETS_CONTEXT" > .env
         env:
           SECRETS_CONTEXT: ${{ toJson(secrets) }}
-
-      - name: 빌드 파일 압축
-        run: tar -cvf mussangdeul-front.tar ./build
 
       - name: SCP To EC2
         uses: appleboy/scp-action@master
@@ -33,10 +29,8 @@ jobs:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USERNAME }}
           key: ${{ secrets.AWS_SSH_KEY }}
-          source: "./build"
-          target: "/home/ubuntu/"
-          overwrite: true
-          strip_components: 1
+          source: "./.env"
+          target: "/home/ubuntu/camp-daddy-front"
 
       - name: 빌드 파일 EC2 배포
         uses: appleboy/ssh-action@master
@@ -46,6 +40,6 @@ jobs:
           key: ${{ secrets.AWS_SSH_KEY }}
           envs: GITHUB_SHA
           script: |
-            sudo apt update
-            cd /home/ubuntu/build
+            cd camp-daddy-front && git pull
+            npm i
             npm start
