@@ -16,6 +16,8 @@ import {getProducts} from "./api/camp-daddy";
 import AuthRedirect from "./components/AuthRedirect"
 import ChatList from "./pages/chat-list";
 import Chat from "./pages/chat-list/chat";
+import ReviewListQuery from "./pages/my-page/review-list-query";
+
 
 function App() {
     return (
@@ -41,6 +43,7 @@ function App() {
             />
             <Route path="/chat-list" element={<ChatList/>}/>
             <Route path="/chat" element={<Chat/>}/>
+            <Route path="/my-page/review-list-query" element={<ReviewListQuery/>}/>
         </Routes>
     );
 }

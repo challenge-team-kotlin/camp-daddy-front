@@ -21,8 +21,11 @@ const Modal = ({
         </span>
         <p>리뷰를 남겨주세요</p>
         <hr />
+        <div className={styles.choice}>
+          <input type="file" onInput={handleImageChange} multiple />
+        </div>
         <form action="#">
-          <label for="lang">점수 : </label>
+          <label htmlFor="lang">점수 : </label>
           <select
             onChange={(e) => handleReviewScoreChange(e)}
             value={reviewScore}
@@ -34,9 +37,6 @@ const Modal = ({
             <option value="5">❤❤❤❤❤</option>
           </select>
         </form>
-        <div className={styles.choice}>
-          <input type="file" onInput={handleImageChange} multiple />
-        </div>
         <input
           type="text"
           value={reviewText}
