@@ -7,13 +7,11 @@ import { jwtDecode } from "jwt-decode";
 import { handleImgError } from "../../../components/handleImage";
 
 export default function SaleListQuery() {
-  const { id } = useParams();
   const [sales, setSales] = useState([]);
   const decode = jwtDecode(localStorage.getItem('access_token'))
   useEffect(() => {
     const fetchSales = async () => {
       try {
-        console.log(decode.sub)
         // 백엔드에서 사용자의 판매 상품 목록을 가져오는 API 호출
         const userSales = await getMemberProduct(decode.sub);
         setSales(userSales);
@@ -23,7 +21,7 @@ export default function SaleListQuery() {
     };
 
     fetchSales();
-  }, [id]);
+  }, []);
 
   // 상품 삭제 함수
   const handleDeleteProduct = async (productId) => {
@@ -33,7 +31,7 @@ export default function SaleListQuery() {
         // 삭제 요청 보내기
         await deleteProduct(productId);
         // 삭제 후 상품 목록 다시 불러오기
-        const updatedSales = await getMemberProduct(id);
+        const updatedSales = await getMemberProduct(decode.sub);
         setSales(updatedSales);
       }
     } catch (error) {

@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Nav from "../../components/molecules/nav";
 import styles from "./Search.module.scss";
-import {getCategory} from "../../api/camp-daddy";
+import { getCategory } from "../../api/camp-daddy";
 
 export default function Search() {
     const navigate = useNavigate();
@@ -23,8 +23,8 @@ export default function Search() {
     }, []);
 
     const handleInputChange = (event) => {
-        const {name, value} = event.target;
-        setSearchData({...searchData, [name]: value});
+        const { name, value } = event.target;
+        setSearchData({ ...searchData, [name]: value });
     };
 
     const handleSubmit = () => {
@@ -47,17 +47,17 @@ export default function Search() {
                 </div>
                 <div className={styles.search_box}>
                     <p>제목</p>
-                    <input type="text" name="title" onChange={handleInputChange}/>
+                    <input type="text" name="title" onChange={handleInputChange} />
                 </div>
                 <div className={styles.search_box}>
                     <p>시작일</p>
-                    <input type="date" name="startDate" onChange={handleInputChange}/>
+                    <input type="date" name="startDate" onChange={handleInputChange} />
                     <p>종료일</p>
-                    <input type="date" name="endDate" onChange={handleInputChange}/>
+                    <input type="date" name="endDate" onChange={handleInputChange} />
                 </div>
                 <button onClick={handleSubmit}>검색</button>
             </div>
-            <Nav/>
+            <Nav />
         </div>
     );
 }

@@ -47,7 +47,7 @@ export const getProduct = async (id) => {
 }
 
 export const getProducts = async (query) => {
-    return apiClient.get(`/products?startDate=${query.starDate}&endDate=${query.endDate}&category=${query.category}&filterReservation=${query.filterReservation}&search=${query.search}&page=${query.page}`);
+    return (await apiClient.get(`/products?startDate=${query.startDate}&endDate=${query.endDate}&categoryKor=${query.category}&filterReservation=${query.filterReservation}&search=${query.title}&page=${query.page}`)).data;
 }
 
 export const postProduct = async (data) => {
@@ -101,5 +101,5 @@ export const patchReservationStatus = async (id, status) => {
 }
 
 export const createReservation = async (data) => {
-    return apiClient.post(`/reservations`,data)
+    return apiClient.post(`/reservations`, data)
 }

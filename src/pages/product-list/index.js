@@ -21,11 +21,10 @@ export default function ProductList() {
       filterReservation: searchParam.get("filterReservation")
     }
 
-    console.log(searchData)
     const fetchData = async () => {
       try {
         const data = await getProducts(searchData);
-        setProducts(data);
+        setProducts(data.content);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
