@@ -72,7 +72,7 @@ export default function ProductAdd() {
       }
 
       const response = await postProduct(data);
-      navigate(`/product/${response.data.productId}`); // 리디렉션 수행
+      navigate(`/products/${response.data.productId}`); // 리디렉션 수행
 
     } catch (error) {
       console.error('Error adding product:', error);
