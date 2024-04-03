@@ -12,7 +12,6 @@ export default function Search() {
         startDate: "",
         endDate: "",
         category: "",
-        page: 1,
         filterReservation: false
     });
 
