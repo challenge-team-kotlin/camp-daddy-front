@@ -48,5 +48,5 @@ jobs:
           envs: GITHUB_SHA
           script: |
             sudo apt update
-            cd /home/ubuntu/build
-            npm start
+            tar -xvf mussangdeul-front.tar.gz
+            cd mussangdeul-front && serve -sn build
