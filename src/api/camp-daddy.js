@@ -99,3 +99,7 @@ export const getReview = async (id) => {
 export const patchReservationStatus = async (id, status) => {
     return apiClient.patch(`/reservations/${id}?reservationStatus=${status}`)
 }
+
+export const createReservation = async (data) => {
+    return apiClient.post(`/reservations`,data)
+}

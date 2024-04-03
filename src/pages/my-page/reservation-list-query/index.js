@@ -24,12 +24,6 @@ export default function ReservationListQuery() {
       try {
         const res = await getMyReservationList();
 
-        res.data.forEach((data) => {
-          if (!data.productImageUrl) {
-            data.productImageUrl = "../images/product_img.png";
-          }
-        });
-
         setDatas(res.data);
         const initialSelectedValues = {};
         res.data.forEach((data) => {
@@ -55,7 +49,7 @@ export default function ReservationListQuery() {
       if (res.status === 200) {
         window.location.reload();
       } else {
-        alert("에러 발생?");
+        alert("에러 발생");
       }
     });
   }
