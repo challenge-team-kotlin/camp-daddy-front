@@ -18,7 +18,7 @@ apiClient.interceptors.request.use((config) => {
   return config;
 });
 
-<<<<<<< HEAD
+
 
 apiClient.interceptors.response.use((config) => {
   return config
@@ -31,19 +31,4 @@ apiClient.interceptors.response.use((config) => {
     throw e
   }
 })
-=======
-apiClient.interceptors.response.use(
-  (config) => {
-    return config;
-  },
-  (e) => {
-    if (e.response.data.errorId == 9001) {
-      localStorage.setItem("access_token", "");
-      alert("로그인을 재시도해주세요.");
-      window.location.href = "/sign-in";
-    } else {
-      throw e;
-    }
-  }
-);
->>>>>>> 7578eb39a8e723eb1cef3b206a444b6a34228631
+
