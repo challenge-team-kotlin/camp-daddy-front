@@ -35,4 +35,16 @@ jobs:
           key: ${{ secrets.AWS_SSH_KEY }}
           source: "./build"
           target: "/home/ubuntu/"
+          overwrite: true
           strip_components: 1
+
+      - name: 빌드 파일 EC2 배포
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USERNAME }}
+          key: ${{ secrets.AWS_SSH_KEY }}
+          envs: GITHUB_SHA
+          script: |
+            cd /home/ubuntu/build
+            npm start
