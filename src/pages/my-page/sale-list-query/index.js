@@ -44,7 +44,7 @@ export default function SaleListQuery() {
       <h2 className={styles.title}>회원별 판매 상품 조회</h2>
       <div className={styles.sale_product_wrap}>
         {sales.map((sale, index) => (
-          <div key={index}>
+          <div key={index} className={styles.product_box}>
             <button
               className={styles.sale_product}
               onClick={() => {
