@@ -48,7 +48,7 @@ export default function ProductList() {
           <button
             key={product.id}
             onClick={() => {
-              window.location.href = `/product-detail/${product.id}`;
+              window.location.href = `/product-detail/${product.productid}`;
             }}
           >
             <img onError={handleImgError} src={product.image} alt={product.title} />
