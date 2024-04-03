@@ -89,55 +89,67 @@
   flex-direction: column;
   padding: 20px;
   gap: 30px;
-  .sale_product {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 30px;
-    img {
-      width: 120px;
-      height: 80px;
-    }
-    > div {
+  .product_box{
+    border: 3px solid rgba(0, 0, 0, 0.23);
+    .sale_product {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 30px;
+      img {
+        padding: 5px 0 0 5px;
+        width: 100px;
+        height: 100px;
+      }
       > div {
-        padding-top: 10px;
+        > div {
+          padding-top: 10px;
+        }
+      }
+      p {
+        font-size: 18px;
+        font-weight: 500;
+        color: #000;
+      }
+      span {
+        font-size: 16px;
+        font-weight: 400;
+        color: #000;
+        margin-right: 20px;
+      }
+      b {
+        font-size: 16px;
+        font-weight: 400;
+        color: red;
       }
     }
-    p {
-      font-size: 18px;
-      font-weight: 500;
-      color: #000;
-    }
-    span {
-      font-size: 16px;
-      font-weight: 400;
-      color: #000;
-      margin-right: 20px;
-    }
-    b {
-      font-size: 16px;
-      font-weight: 400;
-      color: red;
-    }
-  }
-  .sale_btn {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding-top: 20px;
-    button {
-      width: 100px;
-      height: 30px;
-      font-size: 16px;
-      font-weight: 400;
-      color: #000;
-      border: 1px solid #000;
-    }
-    .red {
-      border-color: red;
-      color: red;
+    .sale_btn {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding-top: 20px;
+      padding-bottom: 5px;
+      button {
+        width: 100px;
+        height: 30px;
+        font-size: 16px;
+        font-weight: 400;
+        border: 3px solid rgba(0, 0, 0, 0.23);
+        border-radius: 10px;
+      }
+      button:hover {
+        border: 3px solid #007bff;
+      }
+      .red {
+        border: 3px solid rgba(0, 0, 0, 0.23);
+        border-radius: 10px;
+      }
+      .red:hover {
+        border: 3px solid red;
+      }
     }
   }
+
 }
