@@ -12,6 +12,11 @@ jobs:
       - name: 레포지토리 체크아웃
         uses: actions/checkout@v2
 
+      - name: Node 세팅
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 20.12.1
+          cache: "npm"
 
       - name: NPM 의존 파일 설치 & 빌드
         run: |
@@ -26,7 +31,7 @@ jobs:
 
       - name: 빌드 파일 압축
         run: |
-          tar -cvf mussangdeul-front.tar ./build
+          tar -cvf mussangdeul-front.tar.gz ./build
           ls -al
           cd build
           ls -al
@@ -37,10 +42,8 @@ jobs:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USERNAME }}
           key: ${{ secrets.AWS_SSH_KEY }}
-          source: "./build"
+          source: "./build/mussangdeul-front.tar.gz"
           target: "/home/ubuntu/"
-          overwrite: true
-          strip_components: 1
 
       - name: 빌드 파일 EC2 배포
         uses: appleboy/ssh-action@master
