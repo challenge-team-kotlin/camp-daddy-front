@@ -1,5 +1,5 @@
 import Nav from "../../../components/molecules/nav";
-import styles from "../Mypage.module.scss";
+import styles from "./ReviewList.module.scss";
 import React, { useState, useEffect } from "react";
 import { handleImgError } from "../../../components/handleImage";
 import { getMyReviewList } from "../../../api/camp-daddy";
@@ -30,22 +30,18 @@ export default function ReviewListQuery() {
   return (
     <div className={styles.my_main}>
       <h2 className={styles.title}>내가 작성한 리뷰</h2>
-      <div className={styles.sale_review_wrap}>
+      <div className={styles.sale_product_wrap}>
         {datas.map((data, index) => (
+            <div className={styles.sale_box}>
           <div key={data.reviewId}>
-            <hr />
-            <div className={styles.sale_review}>
+            <div className={styles.sale_product}>
               <img onError={handleImgError} src={data.imageUrl} alt="" />
               <div>
-                <div className={styles.sale_review_btn}>
-                  <span>물품 : {data.productName}</span>
+                <div className={styles.sale_btn}>
                   <button
-                    onClick={() => {
-                      window.location.href = `/products/${data.productId}`;
-                    }}
-                  >
-                    물품보기
-                  </button>
+                      onClick={() => {
+                    window.location.href = `/products/${data.productId}`;
+                  }}>{data.productName}></button>
                 </div>
                 <div>
                   <span>리뷰 내용 : {data.content}</span>
@@ -55,8 +51,8 @@ export default function ReviewListQuery() {
                 </div>
               </div>
             </div>
-            <hr />
           </div>
+            </div>
         ))}
         <Nav />
       </div>
