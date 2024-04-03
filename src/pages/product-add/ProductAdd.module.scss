@@ -4,37 +4,78 @@
 }
 
 .title {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 700;
   color: #000;
   padding: 20px 0 0 20px;
+  text-shadow: 0 6px 3px rgba(0, 0, 0, 0.3);
 }
-
-.add {
+.add_wrap {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 0 20px;
-  input {
-    height: 25px;
-    font-size: 16px;
-    font-weight: 400;
-    color: #000;
-    padding: 0 10px;
+  justify-content: center;
+  padding: 40px 0 20px 20px;
+  gap: 40px;
+
+  .choice {
+  display: flex;
   }
-  textarea {
-    font-size: 16px;
-    font-weight: 400;
-    color: #000;
-    padding: 10px;
+  .category_box {
+    select {
+      width: 308px;
+      height: 40px;
+      font-size: 18px;
+      font-weight: 400;
+      color: #333;
+      border: 3px solid rgba(0, 0, 0, 0.23);
+      border-radius: 10px;
+    }
+    select:hover {
+      border: 3px solid #007bff;
+    }
   }
-  button {
-    width: 200px;
-    height: 40px;
-    margin: 20px auto 0;
-    font-size: 18px;
-    font-weight: 500;
-    color: #000;
-    border: 1px solid #000;
+  .add {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 20px 0 0;
+    input {
+      height: 40px;
+      font-size: 16px;
+      font-weight: 400;
+      color: #000;
+      padding: 0 10px;
+      border: 3px solid rgba(0, 0, 0, 0.23);
+      border-radius: 10px;
+    }
+    input:hover {
+      border: 3px solid #007bff;
+    }
+    textarea {
+      font-size: 16px;
+      font-weight: 400;
+      color: #000;
+      padding: 10px;
+      border: 3px solid rgba(0, 0, 0, 0.23);
+      border-radius: 10px;
+    }
+    textarea:hover {
+      border: 3px solid #007bff;
+    }
+    button {
+      width: 200px;
+      height: 40px;
+      margin: 20px auto 0;
+      font-size: 18px;
+      font-weight: 500;
+      color: #000;
+      border: 3px solid rgba(0, 0, 0, 0.23);
+      border-radius: 10px;
+    }
+    button:hover {
+      border: 3px solid #007bff;
+    }
   }
 }
+
+

@@ -40,6 +40,8 @@
 }
 
 .main_banner {
+  position: relative;
+  z-index: 10;
   height: 300px;
   .banner_list {
     width: 100%;
