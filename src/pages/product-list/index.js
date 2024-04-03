@@ -8,34 +8,57 @@ import { handleImgError } from "../../components/handleImage";
 export default function ProductList() {
   const location = useLocation();
   const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(0);
   const [showAvailableOnly, setShowAvailableOnly] = useState(false);
 
   useEffect(() => {
+    fetchData(); // 페이지 로딩 시 데이터를 가져오는 함수 호출
+    window.addEventListener('scroll', handleScroll); // 스크롤 이벤트 감지
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll); // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+    };
+  }, []);
+
+  useEffect(() => {
+    fetchData(); // 페이지가 변경될 때마다 데이터를 다시 가져오는 함수 호출
+  }, [page]); // page 상태가 변경될 때마다 호출
+
+  const fetchData = async () => {
     const searchParam = new URLSearchParams(location.search)
     const searchData = {
       title: searchParam.get("title"),
       startDate: searchParam.get("startDate"),
       endDate: searchParam.get("endDate"),
       category: searchParam.get("category"),
-      page: searchParam.get("page") - 1,
+      page: page,
       filterReservation: searchParam.get("filterReservation") === "true" // Convert to boolean
     }
     setShowAvailableOnly(searchData.filterReservation);
 
-    const fetchData = async () => {
-      try {
-        const data = await getProducts(searchData);
-        data.content.forEach(e => {
-          e.image = !e.image ? "" : e.image
-        })
-        setProducts(data.content);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
+    try {
+      const data = await getProducts(searchData);
+      const updatedProducts = [...products, ...data.content]; // 이전 데이터와 새로운 데이터를 합침
+      updatedProducts.forEach(e => {
+        e.image = !e.image ? "" : e.image
+      });
+      setProducts(updatedProducts);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
-    fetchData();
-  }, [location.search])
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight
+    ) {
+      nextPage(); // 스크롤이 페이지 하단에 도달하면 다음 페이지 호출
+    }
+  };
+
+  const nextPage = () => {
+    setPage(prevPage => prevPage + 1); // 현재 페이지를 1 증가시킴
+  };
 
   const handleCheckboxChange = () => {
     setShowAvailableOnly(!showAvailableOnly);
@@ -59,6 +82,7 @@ export default function ProductList() {
       <div className={styles.product_wrap}>
         {products.map(product => (
           <button
+            key={product.productId}
             onClick={() => {
               window.location.href = `/products/${product.productId}`;
             }}
