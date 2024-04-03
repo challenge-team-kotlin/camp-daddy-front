@@ -12,16 +12,18 @@ jobs:
       - name: 레포지토리 체크아웃
         uses: actions/checkout@v2
 
-      - name: .env 파일 생성
-        run: |
-          jq -r 'to_entries | map(select(.key != "AWS_SSH_KEY") | "\(.key)=\(.value|tostring)") | .[]' <<< "$SECRETS_CONTEXT" > .env
-        env:
-          SECRETS_CONTEXT: ${{ toJson(secrets) }}
 
       - name: NPM 의존 파일 설치 & 빌드
         run: |
           npm i
           CI=false && npm run build
+
+      - name: .env 파일 생성
+        run: |
+          jq -r 'to_entries | map(select(.key != "AWS_SSH_KEY") | "\(.key)=\(.value|tostring)") | .[]' <<< "$SECRETS_CONTEXT" > ./build/.env
+        env:
+          SECRETS_CONTEXT: ${{ toJson(secrets) }}
+
       - name: 빌드 파일 압축
         run: tar -cvf mussangdeul-front.tar ./build
 
@@ -31,6 +33,6 @@ jobs:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USERNAME }}
           key: ${{ secrets.AWS_SSH_KEY }}
-          source: "./frontend"
-          target: "/home/ubuntu/campdaddy/frontend"
+          source: "./build"
+          target: "/home/ubuntu/"
           strip_components: 1
