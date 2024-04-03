@@ -40,6 +40,6 @@ jobs:
           key: ${{ secrets.AWS_SSH_KEY }}
           envs: GITHUB_SHA
           script: |
-            git pull
+            cd camp-daddy-front && git pull
             npm i
             npm start
