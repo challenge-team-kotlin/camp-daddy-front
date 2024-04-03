@@ -35,7 +35,6 @@ export default function ProductList() {
   }, [location.search])
 
 
-
   return (
     <div className={styles.my_main}>
       <h2 className={styles.title}>상품리스트</h2>
@@ -47,7 +46,7 @@ export default function ProductList() {
         {products.map(product => (
           <button
             onClick={() => {
-              window.location.href = `/product-detail/${product.productid}`;
+              window.location.href = `/products/${product.productId}`;
             }}
           >
             <img onError={handleImgError} src={product.image} alt={product.title} />
