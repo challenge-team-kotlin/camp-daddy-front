@@ -49,6 +49,5 @@
     "@babel/core": "^7.24.3",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.24.3"
-  },
-  "homepage": "ec2-13-209-52-116.ap-northeast-2.compute.amazonaws.com:3000"
+  }
 }

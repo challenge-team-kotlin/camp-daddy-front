@@ -101,16 +101,22 @@ export default function ProductReservationList() {
                       <option value="CANCELED">취소</option>
                     )}
                     {data.reservationStatus === "대여중" && (
-                        <option value="END">대여 종료</option>
-                      ) && <option value="CANCELED">취소</option>}
+                      <option value="END">대여 종료</option>
+                    )}
+                    {data.reservationStatus === "대여중" && (
+                      <option value="CANCELED">취소</option>
+                    )}
                   </select>
-                  <button
-                    onClick={() => {
-                      patchReservation(data.reservationId);
-                    }}
-                  >
-                    상태 수정
-                  </button>
+
+                  {data.reservationStatus !== "대여 종료" && (
+                    <button
+                      onClick={() => {
+                        patchReservation(data.reservationId);
+                      }}
+                    >
+                      상태 수정
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
