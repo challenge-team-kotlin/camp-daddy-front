@@ -52,12 +52,11 @@ export default function ProductReservationList() {
       alert("예약 상태를 선택해주세요");
       return;
     }
-    console.log(reservationId, selectedValue);
     patchReservationStatus(reservationId, selectedValue).then((res) => {
       if (res.status === 200) {
         window.location.reload();
       } else {
-        alert("에러 발생?");
+        alert("에러 발생");
       }
     });
   }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../../components/molecules/nav";
 import styles from "./ProductDetail.module.scss";
-import { getProduct, getReview } from "../../api/camp-daddy";
+import { getProduct, getReview, createReservation } from "../../api/camp-daddy";
 import { useParams } from "react-router-dom";
 import { handleImgError } from "../../components/handleImage";
 
@@ -10,9 +10,36 @@ export default function ProductDetail() {
   const [product, setProduct] = useState("");
   const [reviews, setReviews] = useState([]);
   const [newReviewContent, setNewReviewContent] = useState("");
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
-  const createReservation = async (productId) => {
-    console.log(productId);
+  const insertReservation = async (productId) => {
+    if(!startDate || !endDate ){
+      alert('날짜를 입력해주세요.')
+      return
+    };
+
+    const data = {
+      productId : productId,
+      startDate : startDate,
+      endDate : endDate
+    };
+
+    return createReservation(data).then((res) => {
+      console.log(res)
+      if(res.status == 201){
+        alert("성공적으로 예약을 요청하였습니다.")
+      }
+    
+    })
+    .catch((e) => {
+      if(e.response.data.errorId == 4002){
+        alert("이미 예약이 된 날짜에요")  
+      }else{
+        alert("예약 실패")  
+      }
+      
+    });
   };
 
   useEffect(() => {
@@ -39,10 +66,16 @@ export default function ProductDetail() {
             <img src={product.imageUrl} onError={handleImgError} />
             <span>{product.content}</span>
           </div>
+          <div className={styles.date}>
+            <span>시작일 : </span>
+              <input type="date" value={startDate}  onChange={(e) => setStartDate(e.target.value)} />
+              <span>종료일 : </span>
+              <input type="date" value={endDate}  onChange={(e) => setEndDate(e.target.value)} />
+            </div>
           <div className={styles.btn_box}>
             <button
               onClick={() => {
-                createReservation(product.productId);
+                insertReservation(product.productId);
               }}
             >
               예약하기
