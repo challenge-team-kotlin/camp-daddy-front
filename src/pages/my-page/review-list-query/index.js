@@ -6,18 +6,19 @@ import { getMyReviewList } from "../../../api/camp-daddy";
 
 export default function ReviewListQuery() {
   const [datas, setDatas] = useState([]);
-  const [selectedValues, setSelectedValues] = useState({});
 
   useEffect(() => {
     const fetchReviewData = async () => {
       try {
         const res = await getMyReviewList();
         setDatas(res.data);
-        const initialSelectedValues = {};
         res.data.forEach((data) => {
-          initialSelectedValues[data.reservationId] = "";
+          if(data.imageUrls.length === 0){
+            data.imageUrl = ""
+          }else{
+              data.imageUrl = data.imageUrls[0]
+          }
         });
-        setSelectedValues(initialSelectedValues);
       } catch (error) {
         console.error("Error fetching reservation data:", error);
       }
@@ -34,7 +35,7 @@ export default function ReviewListQuery() {
           <div key={data.reviewId}>
             <hr />
             <div className={styles.sale_product}>
-              <img onError={handleImgError} src={data.imageUrls[0]} alt="" />
+              <img onError={handleImgError} src={data.imageUrl} alt="" />
               <div>
                 <div className={styles.sale_btn}>
                   <span>물품 : {data.productName}</span>
