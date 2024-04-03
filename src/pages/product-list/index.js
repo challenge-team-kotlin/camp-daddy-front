@@ -32,7 +32,7 @@ export default function ProductList() {
 
 
     fetchData();
-  }, [])
+  }, [location.search])
 
 
 

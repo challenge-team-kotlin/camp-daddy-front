@@ -41,7 +41,7 @@ export default function Nav() {
                     if (user) {
                         window.location.href = "/sign-in";
                     } else {
-                        window.location.href = "/chatting";
+                        window.location.href = "/chat-list";
                     }
                 }}
             >
