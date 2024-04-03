@@ -36,8 +36,8 @@ jobs:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USERNAME }}
           key: ${{ secrets.AWS_SSH_KEY }}
-          source: "./build/mussangdeul-front.tar.gz"
-          target: "/home/ubuntu/"
+          source: "./mussangdeul-front.tar.gz"
+          target: "/home/ubuntu"
 
       - name: 빌드 파일 EC2 배포
         uses: appleboy/ssh-action@master
