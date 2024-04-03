@@ -1,5 +1,5 @@
 import Nav from "../../../components/molecules/nav";
-import styles from "../Mypage.module.scss";
+import styles from "../reservation-list-query/ReservationList.module.scss";
 import {
   getProductReservationList,
   patchReservationStatus,

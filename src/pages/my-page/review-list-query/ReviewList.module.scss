@@ -89,7 +89,7 @@
   flex-direction: column;
   padding: 20px;
   gap: 30px;
-  .product_box{
+  .sale_box{
     border: 3px solid rgba(0, 0, 0, 0.23);
     .sale_product {
       display: flex;
@@ -97,25 +97,18 @@
       align-items: center;
       gap: 30px;
       img {
-        padding: 5px 0 0 5px;
-        width: 100px;
+        padding-left: 10px;
+        width: 120px;
         height: 100px;
       }
       > div {
         > div {
-          padding-top: 10px;
         }
       }
       p {
         font-size: 18px;
         font-weight: 500;
         color: #000;
-      }
-      span {
-        font-size: 16px;
-        font-weight: 400;
-        color: #000;
-        margin-right: 20px;
       }
       b {
         font-size: 16px;
@@ -124,50 +117,19 @@
       }
     }
     .sale_btn {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      padding-top: 20px;
-      padding-bottom: 5px;
+      padding-bottom: 10px;
       button {
-        width: 100px;
-        height: 30px;
         font-size: 16px;
-        font-weight: 400;
-        border: 3px solid rgba(0, 0, 0, 0.23);
-        border-radius: 10px;
+        font-weight: bold;
+        color: #000;
       }
       button:hover {
-        border: 3px solid #007bff;
-      }
-      .red {
-        border: 3px solid rgba(0, 0, 0, 0.23);
-        border-radius: 10px;
-      }
-      .red:hover {
-        border: 3px solid red;
+        font-weight: bold;
       }
     }
   }
-.sale_review_wrap {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  gap: 30px;
-  .sale_review {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 30px;
-    img {
-      padding: 5px 0 0 5px;
-      width: 100px;
-      height: 100px;
-      border: 1px black;
-    }
+  .sale_box:hover {
+    border: 3px solid #007bff;
   }
-}
 
 }

@@ -13,6 +13,15 @@ export default function SaleListQuery() {
       try {
         // 백엔드에서 사용자의 판매 상품 목록을 가져오는 API 호출
         const userSales = await getMemberProduct(decode.sub);
+        userSales.forEach((data) => {
+          console.log(data)
+          if(data.presentationImage.length === 0){
+            data.presentationImageUrl = ""
+          }else{
+              data.presentationImageUrl = data.presentationImage[0]
+          }
+        });
+
         setSales(userSales);
       } catch (error) {
         console.error("Error fetching user sales:", error);
@@ -31,6 +40,8 @@ export default function SaleListQuery() {
         await deleteProduct(productId);
         // 삭제 후 상품 목록 다시 불러오기
         const updatedSales = await getMemberProduct(decode.sub);
+        
+
         setSales(updatedSales);
       }
     } catch (error) {
@@ -50,7 +61,7 @@ export default function SaleListQuery() {
                 window.location.href = `/products/${sale.productId}`;
               }}
             >
-              <img onError={handleImgError} src={sale.presentationImage[0]} alt="" />
+              <img onError={handleImgError} src={sale.presentationImageUrl} alt="" />
               <div>
                 <p>{sale.title}</p>
                 <div>
