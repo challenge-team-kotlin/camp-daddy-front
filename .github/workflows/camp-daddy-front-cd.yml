@@ -30,7 +30,7 @@ jobs:
           username: ${{ secrets.AWS_USERNAME }}
           key: ${{ secrets.AWS_SSH_KEY }}
           source: "./.env"
-          target: "/home/ubuntu"
+          target: "/home/ubuntu/camp-daddy-front"
 
       - name: 빌드 파일 EC2 배포
         uses: appleboy/ssh-action@master
