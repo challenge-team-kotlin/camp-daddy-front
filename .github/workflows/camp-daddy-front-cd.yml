@@ -46,5 +46,6 @@ jobs:
           key: ${{ secrets.AWS_SSH_KEY }}
           envs: GITHUB_SHA
           script: |
+            sudo apt update
             cd /home/ubuntu/build
             npm start
