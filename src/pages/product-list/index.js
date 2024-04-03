@@ -46,7 +46,6 @@ export default function ProductList() {
       <div className={styles.product_wrap}>
         {products.map(product => (
           <button
-            key={product.id}
             onClick={() => {
               window.location.href = `/product-detail/${product.productid}`;
             }}
