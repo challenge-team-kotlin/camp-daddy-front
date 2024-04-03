@@ -17,7 +17,7 @@ export default function ProductDetail() {
     if (!startDate || !endDate) {
       alert('날짜를 입력해주세요.')
       return
-    };
+    }
 
     const data = {
       productId: productId,
@@ -84,19 +84,19 @@ export default function ProductDetail() {
           <div className={styles.review_wrap}>
             <h6>리뷰</h6>
             {reviews.map((review, index) => (
-              <div key={index} className={styles.review_box}>
-                <div className={styles.review_user}>
-                  <img
-                    onError={handleImgError}
-                    src={review.imageUrls}
-                    alt={review.nickName}
-                  />
-                  <p>{review.nickName}</p>
+                <div key={index} className={styles.review_box}>
+                  <div className={styles.review_user}>
+                    <img
+                        onError={handleImgError}
+                        src={review.imageUrls}
+                        alt={review.nickName}
+                    />
+                  </div>
+                  <div className={styles.pSpan}>
+                    <p>{review.nickName}</p>
+                    <span>{review.content}</span>
+                  </div>
                 </div>
-                <div className={styles.review_content}>
-                  <span>{review.content}</span>
-                </div>
-              </div>
             ))}
           </div>
         </>

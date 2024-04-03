@@ -4,16 +4,20 @@
 }
 
 .title {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 700;
   color: #000;
   padding: 20px 0 0 20px;
+  text-shadow: 0 6px 3px rgba(0, 0, 0, 0.3);
 }
 
 .banner {
-  padding: 20px 0;
+  padding: 20px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   img {
-    width: 100%;
+    width: 80%;
     aspect-ratio: 16/9;
   }
   p {
@@ -24,16 +28,34 @@
   }
   span {
     display: block;
-    padding: 10px;
+    padding: 10px 0 0 60px;
     font-size: 18px;
     font-weight: 400;
     color: #333;
+    align-self: flex-start;
+  }
+}
+
+.date {
+  padding: 20px 0 0 25px;
+  display: flex;
+  align-items: center;
+  span{
+    padding-left: 25px;
+    font-size: 20px;
+  }
+  input {
+    margin-left: 5px;
+    width: 170px;
+    height: 20px;
   }
 }
 
 .btn_box {
+  padding: 20px 30px 0 30px;
   display: flex;
   flex-direction: row;
+  gap: 10px;
   button {
     display: flex;
     flex: 1;
@@ -42,8 +64,10 @@
     height: 50px;
     font-size: 20px;
     font-weight: 500;
-    color: red;
-    border: 1px solid red;
+    border: 3px solid rgba(0, 0, 0, 0.23);
+  }
+  button:hover{
+    border: 3px solid #007bff;
   }
 }
 
@@ -57,25 +81,27 @@
   }
   .review_box {
     display: flex;
-    flex-direction: row;
-    gap: 20px;
     border-bottom: 1px solid #000;
     padding: 20px 0;
+    .review_user{
+     font-size: 20px;
+    }
     img {
       width: 80px;
       height: 80px;
     }
-    p {
-      font-size: 12px;
-      font-weight: 500;
-      color: #000;
-    }
-    span {
-      display: block;
-      padding-top: 10px;
-      font-size: 14px;
-      font-weight: 400;
-      color: #000;
+    .pSpan{
+      padding-left: 10px;
+      padding-top: 5px;
+      flex-direction: column;
+      p {
+        font-size: 18px;
+        font-weight: 500;
+      }
+      span {
+        font-size: 15px;
+        font-weight: 400;
+      }
     }
   }
 }
