@@ -12,11 +12,6 @@ jobs:
       - name: 레포지토리 체크아웃
         uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 20.12.1
-          cache: "npm"
-
       - name: NPM 의존 파일 설치 & 빌드
         run: |
           npm i
