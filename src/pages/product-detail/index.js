@@ -9,7 +9,6 @@ export default function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState("");
   const [reviews, setReviews] = useState([]);
-  const [newReviewContent, setNewReviewContent] = useState("");
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
@@ -26,16 +25,16 @@ export default function ProductDetail() {
     };
 
     return createReservation(data).then((res) => {
-      if (res.status == 201) {
+      if (res.status === 201) {
         alert("성공적으로 예약을 요청하였습니다.")
       }
 
     })
       .catch((e) => {
-        if (e.response.data.errorId == 4002) {
+        if (e.response.data.errorId === 4002) {
           alert("이미 예약이 된 날짜에요")
         } else {
-          alert("예약 실패")
+          alert(e.response.data.payload)
         }
 
       });

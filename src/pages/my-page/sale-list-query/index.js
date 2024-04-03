@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../../../components/molecules/nav";
 import styles from "../Mypage.module.scss";
-import { useParams } from "react-router-dom";
 import { getMemberProduct, deleteProduct } from "../../../api/camp-daddy";
 import { jwtDecode } from "jwt-decode";
 import { handleImgError } from "../../../components/handleImage";

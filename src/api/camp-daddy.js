@@ -109,7 +109,7 @@ export const createReview = async (data) => {
 }
 
 export const getChatRoom = async (id) => {
-    return apiClient.get(`/chatroom/${id}`)
+    return apiClient.get(`/chatroom/me/${id}`)
 }
 
 export const getMyReviewList = async () => {

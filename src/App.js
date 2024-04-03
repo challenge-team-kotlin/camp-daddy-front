@@ -42,7 +42,7 @@ function App() {
                 element={<ProductReservationList/>}
             />
             <Route path="/chat-list" element={<ChatList/>}/>
-            <Route path="/chat" element={<Chat/>}/>
+            <Route path="/chat/:id" element={<Chat/>}/>
             <Route path="/my-page/review-list-query" element={<ReviewListQuery/>}/>
         </Routes>
     );
