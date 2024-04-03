@@ -90,7 +90,7 @@ export default function ProductList() {
             <img onError={handleImgError} src={product.image} alt={product.title} />
             <div>
               <p>{product.title}</p>
-              <span>{product.price}</span>
+              <span>{product.pricePerDay}</span>
             </div>
           </button>
         ))}

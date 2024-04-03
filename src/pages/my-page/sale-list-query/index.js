@@ -54,8 +54,7 @@ export default function SaleListQuery() {
               <div>
                 <p>{sale.title}</p>
                 <div>
-                  <span>{sale.status}</span>
-                  <b>{sale.price}</b>
+                  <p>{sale.price}</p>
                 </div>
               </div>
             </button>

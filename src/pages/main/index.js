@@ -57,15 +57,36 @@ export default function Main() {
               height: 300,
             }}
           >
+            <SwiperSlide>123</SwiperSlide>
+            <SwiperSlide>456</SwiperSlide>
+            {/* <SwiperSlide>
+              <div className={styles.banner_list}>
+                <a href="http://dooingle.net">
+                  <img src="images/dooingle.png" ></img>
+                </a>
+              </div>
+            </SwiperSlide>``
             <SwiperSlide>
-              <div className={styles.banner_list}>111</div>
+              <div className={styles.banner_list}>
+                <a href="http://moauniverse.com/">
+                  <img src="images/moamoa.png"></img>
+                </a>
+              </div>
             </SwiperSlide>
             <SwiperSlide>
-              <div className={styles.banner_list}>22</div>
+              <div className={styles.banner_list}>
+                <a href="http://ticketradar.net">
+                  <img src="images/ticketradar.png"></img>
+                </a>
+              </div>
             </SwiperSlide>
             <SwiperSlide>
-              <div className={styles.banner_list}>33</div>
-            </SwiperSlide>
+              <div className={styles.banner_list}>
+                <a href="https://zziririt.kr">
+                  <img src="images/zziririt.png"></img>
+                </a>
+              </div>
+            </SwiperSlide> */}
           </Swiper>
         </div>
         <div className={styles.main_product}>
