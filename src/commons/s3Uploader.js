@@ -9,7 +9,7 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
-async function uploadPhotoToS3(file, bucketName) {
+async function uploadPhotoToS3(file) {
     const fileExtension = file.name.slice(file.name.lastIndexOf('.')).toLowerCase();
     if (!['.jpeg', '.png', '.jpg'].includes(fileExtension)) {
         alert('jpeg, png, jpg 파일만 업로드가 가능합니다.');

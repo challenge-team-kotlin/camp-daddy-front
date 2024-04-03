@@ -58,7 +58,7 @@ export default function ProductAdd() {
       // 모든 이미지를 순회하며 S3에 업로드하고 이미지 URL을 배열에 저장
       const imageUrls = [];
       for (const image of images) {
-        const imageUrl = await uploadPhotoToS3(image, 'YOUR_S3_BUCKET_NAME'); // S3 버킷 이름을 넣어주세요
+        const imageUrl = await uploadPhotoToS3(image); // S3 버킷 이름을 넣어주세요
         imageUrls.push(imageUrl);
       }
 
