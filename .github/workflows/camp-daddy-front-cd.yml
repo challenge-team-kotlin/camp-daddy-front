@@ -12,7 +12,6 @@ jobs:
       - name: 레포지토리 체크아웃
         uses: actions/checkout@v2
 
-      - name: Node 세팅
       - uses: actions/setup-node@v2
         with:
           node-version: 20.12.1
