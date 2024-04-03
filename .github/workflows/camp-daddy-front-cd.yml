@@ -1,0 +1,39 @@
+name: Camp Daddy Front CD
+
+on:
+  push:
+    branches:
+      - main
+
+defaults:
+  run:
+    working-directory: ./frontend
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 레포지토리 체크아웃
+        uses: actions/checkout@v2
+
+      - name: .env 파일 생성
+        run: |
+          jq -r 'to_entries | map(select(.key != "AWS_SSH_KEY") | "\(.key)=\(.value|tostring)") | .[]' <<< "$SECRETS_CONTEXT" > .env
+        env:
+          SECRETS_CONTEXT: ${{ toJson(secrets) }}
+
+      - name: NPM 의존 파일 설치 & 빌드
+        run: |
+          npm i
+          npm run build
+      - name: 빌드 파일 압축
+        run: tar -cvf mussangdeul-front.tar
+
+      - name: SCP To EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USERNAME }}
+          key: ${{ secrets.AWS_SSH_KEY }}
+          source: "./frontend"
+          target: "/home/ubuntu/campdaddy/frontend"
+          strip_components: 1
