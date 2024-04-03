@@ -3,13 +3,76 @@ import styles from "../Mypage.module.scss";
 import {
   getMyReservationList,
   patchReservationStatus,
+  createReview
 } from "../../../api/camp-daddy";
 import React, { useState, useEffect } from "react";
 import { handleImgError } from "../../../components/handleImage";
+import Modal from "./Modal";
+import { uploadPhotoToS3 } from "../../../commons/s3Uploader";
 
 export default function ReservationListQuery() {
   const [datas, setDatas] = useState([]);
   const [selectedValues, setSelectedValues] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [reviewText, setReviewText] = useState("");
+  const [reviewScore, setReviewScore] = useState("");
+  const [modalReservationId, setModalReservationId] = useState(0);
+  const [images, setImages] = useState([]);
+  const openModal = (reservationId) => {
+    setReviewText("");
+    setReviewScore(5);
+    setModalReservationId(reservationId);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleReviewChange = (e) => {
+    setReviewText(e.target.value);
+  };
+
+  const handleReviewScoreChange = (e) => {
+    setReviewScore(e.target.value);
+  };
+
+  const handleImageChange = (e) => {
+    setImages(Array.from(e.target.files));
+  };
+
+  const handleReviewSubmit = async () => {
+
+    const imageUrls = [];
+    for (const image of images) {
+      const imageUrl = await uploadPhotoToS3(image, 'camp-daddy-bucket');
+      imageUrls.push(imageUrl);
+    }
+
+    const data = {
+      content : reviewText,
+      productId : modalReservationId,
+      score : reviewScore,
+      imageUrls : imageUrls
+    };
+    console.log(data)
+    return createReview(data).then((res) => {
+      console.log(res)
+      if(res.status === 201){
+        alert("리뷰 작성이 완료 되었어요.")
+      }
+    
+    })
+    .catch((e) => {
+      if(e.response.data.errorId === 4002){
+        alert("이미 예약이 된 날짜에요")  
+      }else{
+        alert("예약 실패")  
+      }
+      
+    });
+
+  };
 
   const handleSelect = (e, reservationId) => {
     const value = e.target.value;
@@ -23,7 +86,7 @@ export default function ReservationListQuery() {
     const fetchReservationData = async () => {
       try {
         const res = await getMyReservationList();
-
+        
         setDatas(res.data);
         const initialSelectedValues = {};
         res.data.forEach((data) => {
@@ -44,7 +107,6 @@ export default function ReservationListQuery() {
       alert("예약 상태를 선택해주세요");
       return;
     }
-    console.log(reservationId, selectedValue);
     patchReservationStatus(reservationId, selectedValue).then((res) => {
       if (res.status === 200) {
         window.location.reload();
@@ -91,21 +153,43 @@ export default function ReservationListQuery() {
                       <option value="CANCELED">취소</option>
                     )}
                   </select>
-                  <button
-                    onClick={() => {
-                      patchReservation(data.reservationId);
-                    }}
-                  >
-                    상태 수정
-                  </button>
+
+                  {data.reservationStatus !== "대여 종료" && (
+                    <button
+                      onClick={() => {
+                        patchReservation(data.reservationId);
+                      }}
+                    >
+                      상태 수정
+                    </button>
+                  )}
+                  {data.reservationStatus === "대여 종료" && (
+                    <button
+                      onClick={() => {
+                        openModal(data.productId);
+                      }}
+                    >
+                      리뷰 남기기
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
             <hr />
           </div>
         ))}
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          reviewText={reviewText}
+          reviewScore={reviewScore}
+          handleReviewChange={handleReviewChange}
+          handleReviewSubmit={handleReviewSubmit}
+          handleReviewScoreChange={handleReviewScoreChange}
+          handleImageChange={handleImageChange}
+        />
+        <Nav />
       </div>
-      <Nav />
     </div>
   );
 }

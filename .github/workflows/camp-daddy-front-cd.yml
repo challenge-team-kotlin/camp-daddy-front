@@ -25,7 +25,11 @@ jobs:
           SECRETS_CONTEXT: ${{ toJson(secrets) }}
 
       - name: 빌드 파일 압축
-        run: tar -cvf mussangdeul-front.tar ./build
+        run: |
+          tar -cvf mussangdeul-front.tar ./build
+          ls -al
+          cd build
+          ls -al
 
       - name: SCP To EC2
         uses: appleboy/scp-action@master
