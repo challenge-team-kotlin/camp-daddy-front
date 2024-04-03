@@ -30,14 +30,14 @@ export default function ReviewListQuery() {
   return (
     <div className={styles.my_main}>
       <h2 className={styles.title}>내가 작성한 리뷰</h2>
-      <div className={styles.sale_product_wrap}>
+      <div className={styles.sale_review_wrap}>
         {datas.map((data, index) => (
           <div key={data.reviewId}>
             <hr />
-            <div className={styles.sale_product}>
+            <div className={styles.sale_review}>
               <img onError={handleImgError} src={data.imageUrl} alt="" />
               <div>
-                <div className={styles.sale_btn}>
+                <div className={styles.sale_review_btn}>
                   <span>물품 : {data.productName}</span>
                   <button
                     onClick={() => {
