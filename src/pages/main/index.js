@@ -86,13 +86,10 @@ export default function Main() {
                 />
                 <div>
                   <p>{product.title}</p>
-                  <span>{product.pricePerDay}</span>
+                  
                 </div>
               </Link>
-              <div className={styles.right_box}>
-                <button>좋아요</button>
-                <p>{product.likes}</p>
-              </div>
+              <span className={styles.price}>{product.pricePerDay} 원</span>
             </div>
           ))}
         </div>

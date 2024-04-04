@@ -56,9 +56,7 @@
 }
 
 .main_product {
-  margin-top: 20px; // 배너와의 간격 조정
-  border-top: 1px solid #ddd; // 배너와의 구분선 추가
-  padding-top: 20px; // 배너와의 간격 조정
+  border-top: 1px solid #ddd;
   .product_list {
     a {
       text-decoration: none; // 링크에 밑줄 제거
@@ -67,12 +65,14 @@
         color: #555; // 링크에 마우스를 올렸을 때 색상 변경
       }
     }
-    border-bottom: 1px solid #000;
+    border-radius: 30px;
+    margin: 15px 5px 0 5px;
     padding: 16px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    background-color: #AEDEC4;
   }
   .left_box {
     display: flex;
@@ -92,13 +92,9 @@
       font-weight: 700;
       color: #000;
     }
-    span {
-      display: block;
-      margin-top: 8px;
-      font-size: 16px;
-      font-weight: 400;
-      color: red;
-    }
+  }
+  .price {
+    font-size: 20px;
   }
   .right_box {
     display: flex;
