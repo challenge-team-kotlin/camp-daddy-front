@@ -64,7 +64,7 @@ export default function SaleListQuery() {
               <div>
                 <p>{sale.title}</p>
                 <div>
-                  <p>{sale.price}</p>
+                  <p>{sale.price} 원</p>
                 </div>
               </div>
             </button>

@@ -25,17 +25,14 @@
     font-size: 25px;
     font-weight: 400;
     color: #000;
-    background-color: #AEDEC4;
     border: 3px solid rgba(0, 0, 0, 0.23);
-    border-radius: 25px;
+    border-radius: 15px;
   }
   button:hover {
-    background-color: darkgreen;
-    color: #fff;
+    border: 3px solid #007bff;
   }
   .logout_btn:hover {
-    background-color: red;
-    color: #fff;
+    border: 3px solid red;
   }
 }
 
@@ -71,20 +68,19 @@
     input:focus {
       outline: none;
       border-radius: 10px;
-      border: 3px solid #AEDEC4;
+      border: 3px solid #007bff;
     }
   }
   button {
     width: 160px;
     height: 40px;
-    background-color: #AEDEC4;
-    border-radius: 15px;
+    border: 3px solid rgba(0, 0, 0, 0.23);
+    border-radius: 10px;
     font-size: 21px;
     font-weight: 500;
   }
   button:hover {
-    background-color: darkgreen;
-    color: #fff;
+    border: 3px solid #007bff;
   }
 }
 
@@ -93,20 +89,20 @@
   flex-direction: column;
   padding: 20px;
   gap: 30px;
-  .product_box{
+  .sale_box{
     border: 3px solid rgba(0, 0, 0, 0.23);
     border-radius: 30px;
-    background-color: #AEDEC4;
+    background-color: #AEDEC4;;
     .sale_product {
       display: flex;
       flex-direction: row;
       align-items: center;
       gap: 30px;
       img {
-        padding: 10px 0 0 10px;
-        width: 100px;
+        padding-left: 10px;
+        width: 120px;
         height: 100px;
-        border-radius: 50%;
+        border-radius: 40%;
       }
       > div {
         > div {
@@ -136,46 +132,40 @@
       justify-content: center;
       align-items: center;
       gap: 20px;
-      padding-top: 20px;
-      padding-bottom: 5px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      select{
+        width: 100px;
+        height: 30px;
+        font-size: 16px;
+        border: 3px solid rgba(0, 0, 0, 0.23);
+        border-radius: 10px;
+        background-color: antiquewhite;
+      }
+      select:hover {
+        border: 3px solid darkgreen;
+      }
       button {
         width: 100px;
         height: 30px;
         font-size: 16px;
         font-weight: 400;
+        color: #000;
         border: 3px solid rgba(0, 0, 0, 0.23);
-        background-color: antiquewhite;
         border-radius: 10px;
+        background-color: antiquewhite;
       }
       button:hover {
         border: 3px solid darkgreen;
       }
       .red {
-        background-color: antiquewhite;
-        border-radius: 10px;
-      }
-      .red:hover {
-        border: 3px solid red;
+        border-color: red;
+        color: red;
       }
     }
   }
-.sale_review_wrap {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  gap: 30px;
-  .sale_review {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 30px;
-    img {
-      padding: 5px 0 0 5px;
-      width: 100px;
-      height: 100px;
-      border: 1px black;
-    }
+  .sale_box:hover {
+    border: 3px solid darkgreen;
   }
-}
 
 }

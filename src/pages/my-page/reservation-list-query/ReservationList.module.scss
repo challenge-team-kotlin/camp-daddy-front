@@ -91,6 +91,8 @@
   gap: 30px;
   .sale_box{
     border: 3px solid rgba(0, 0, 0, 0.23);
+    border-radius: 35px;
+    background-color: #AEDEC4;
     .sale_product {
       display: flex;
       flex-direction: row;
@@ -100,6 +102,7 @@
         padding-left: 10px;
         width: 120px;
         height: 100px;
+        border-radius: 50%;;
       }
       > div {
         > div {
@@ -137,9 +140,10 @@
         font-size: 16px;
         border: 3px solid rgba(0, 0, 0, 0.23);
         border-radius: 10px;
+        background-color: antiquewhite;
       }
       select:hover {
-        border: 3px solid #007bff;
+        border: 3px solid darkgreen;
       }
       button {
         width: 100px;
@@ -149,9 +153,10 @@
         color: #000;
         border: 3px solid rgba(0, 0, 0, 0.23);
         border-radius: 10px;
+        background-color: antiquewhite;
       }
       button:hover {
-        border: 3px solid #007bff;
+        border: 3px solid darkgreen;
       }
       .red {
         border-color: red;
@@ -160,7 +165,7 @@
     }
   }
   .sale_box:hover {
-    border: 3px solid #007bff;
+    border: 3px solid darkgreen;
   }
 
 }

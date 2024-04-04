@@ -41,7 +41,7 @@ export default function ReviewListQuery() {
                   <button
                       onClick={() => {
                     window.location.href = `/products/${data.productId}`;
-                  }}>{data.productName}></button>
+                  }}>{data.productName}</button>
                 </div>
                 <div>
                   <span>리뷰 내용 : {data.content}</span>

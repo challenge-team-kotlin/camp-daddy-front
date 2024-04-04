@@ -51,7 +51,7 @@ export default function ChatList() {
               <div className={styles.userInfo}>{data.productTitle}</div>
                 <div className={styles.infoAndDate}>
                   <div className={styles.userInfo}>{data.nickname}</div>
-                  <div className={styles.lastChatDate}>{data.lastChatDate}</div>
+                  <div className={styles.lastChatDate}>{data.lastChatDate.replace('T', ' ').split(".")[0].replaceAll('-', '.')}</div>
                 </div>
                 <div className={styles.lastChatMessage}>
                   {data.lastChatMessage}

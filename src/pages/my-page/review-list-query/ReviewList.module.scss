@@ -90,7 +90,11 @@
   padding: 20px;
   gap: 30px;
   .sale_box{
+    padding-top: 10px;
+    padding-bottom: 10px;
     border: 3px solid rgba(0, 0, 0, 0.23);
+    border-radius: 35px;
+    background-color: #AEDEC4;
     .sale_product {
       display: flex;
       flex-direction: row;
@@ -100,6 +104,7 @@
         padding-left: 10px;
         width: 120px;
         height: 100px;
+        border-radius: 50%;
       }
       > div {
         > div {
@@ -129,7 +134,7 @@
     }
   }
   .sale_box:hover {
-    border: 3px solid #007bff;
+    border: 3px solid darkgreen;
   }
 
 }

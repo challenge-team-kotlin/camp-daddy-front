@@ -73,6 +73,10 @@
     justify-content: space-between;
     align-items: center;
     background-color: #AEDEC4;
+    border: 3px solid rgba(0, 0, 0, 0.23);
+  }
+  .product_list:hover {
+    border: 3px solid darkgreen;
   }
   .left_box {
     display: flex;

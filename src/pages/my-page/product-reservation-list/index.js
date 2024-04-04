@@ -1,5 +1,5 @@
 import Nav from "../../../components/molecules/nav";
-import styles from "../reservation-list-query/ReservationList.module.scss";
+import styles from "./ProductReservationList.module.scss";
 import {
   getProductReservationList,
   patchReservationStatus,
@@ -66,8 +66,7 @@ export default function ProductReservationList() {
       <h2 className={styles.title}>판매상품 예약 목록 조회</h2>
       <div className={styles.sale_product_wrap}>
         {datas.map((data, index) => (
-          <div key={data.reservationId}>
-            <hr />
+          <div key={data.reservationId} className={styles.sale_box}>
             <div className={styles.sale_product}>
               <img onError={handleImgError} src={data.productImageUrl} alt="" />
               <div>
@@ -120,7 +119,6 @@ export default function ProductReservationList() {
                 </div>
               </div>
             </div>
-            <hr />
           </div>
         ))}
       </div>
