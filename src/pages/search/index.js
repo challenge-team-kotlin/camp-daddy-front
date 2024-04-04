@@ -27,6 +27,13 @@ export default function Search() {
     };
 
     const handleSubmit = () => {
+        const { startDate, endDate } = searchData;
+
+        if (!startDate || !endDate) {
+            alert("시작일과 종료일을 입력하세요.");
+            return;
+        }
+
         const queryString = new URLSearchParams(searchData).toString();
         navigate(`/product-list?${queryString}`);
     };

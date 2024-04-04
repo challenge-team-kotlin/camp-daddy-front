@@ -27,7 +27,7 @@ export default function Main() {
   return (
     <div>
       <div className={styles.main} style={{ flex: 1 }}>
-        <div className={styles.main_title}>
+        {/* <div className={styles.main_title}>
           <div className={styles.left_box}>
             <input
               type="text"
@@ -44,7 +44,7 @@ export default function Main() {
           </div>
           {search.length > 0 && <button>검색하기</button>}
           <button>검색하기</button>
-        </div>
+        </div> */}
         <div className={styles.main_banner}>
           <Swiper
             modules={[Autoplay]}
