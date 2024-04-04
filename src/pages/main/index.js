@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore from "swiper";
 import { Autoplay } from "swiper/modules";
+import "swiper/swiper-bundle.css";
 import Nav from "../../components/molecules/nav";
 import styles from "./Main.module.scss";
 import { getAllProducts } from "../../api/camp-daddy";
@@ -27,45 +29,22 @@ export default function Main() {
   return (
     <div>
       <div className={styles.main} style={{ flex: 1 }}>
-        {/* <div className={styles.main_title}>
-          <div className={styles.left_box}>
-            <input
-              type="text"
-              className={styles.text}
-              placeholder="검색어를 입력해주세요"
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
-            />
-            <div className={styles.date}>
-              <input type="date" />
-              <input type="date" />
-            </div>
-          </div>
-          {search.length > 0 && <button>검색하기</button>}
-          <button>검색하기</button>
-        </div> */}
         <div className={styles.main_banner}>
+          {/* Swiper 사용 */}
           <Swiper
             modules={[Autoplay]}
+            spaceBetween={50}
+            slidesPerView={1}
+            autoplay={{ delay: 3000 }}
             loop={true}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-            }}
-            style={{
-              height: 300,
-            }}
           >
-            <SwiperSlide>123</SwiperSlide>
-            <SwiperSlide>456</SwiperSlide>
-            {/* <SwiperSlide>
+            <SwiperSlide>
               <div className={styles.banner_list}>
                 <a href="http://dooingle.net">
                   <img src="images/dooingle.png" ></img>
                 </a>
               </div>
-            </SwiperSlide>``
+            </SwiperSlide>
             <SwiperSlide>
               <div className={styles.banner_list}>
                 <a href="http://moauniverse.com/">
@@ -86,15 +65,25 @@ export default function Main() {
                   <img src="images/zziririt.png"></img>
                 </a>
               </div>
-            </SwiperSlide> */}
+            </SwiperSlide>
+
           </Swiper>
         </div>
+
         <div className={styles.main_product}>
-          <div></div>
+          {/* 상품목록 출력 */}
           {products.map((product, index) => (
             <div key={index} className={styles.product_list}>
-              <Link to={`/products/${product.productId}`} className={styles.left_box}>
-                <img src={product.imageUrl} alt="" onError={handleImgError} className={styles.product_image} />
+              <Link
+                to={`/products/${product.productId}`}
+                className={styles.left_box}
+              >
+                <img
+                  src={product.imageUrl}
+                  alt=""
+                  onError={handleImgError}
+                  className={styles.product_image}
+                />
                 <div>
                   <p>{product.title}</p>
                   <span>{product.pricePerDay}</span>
