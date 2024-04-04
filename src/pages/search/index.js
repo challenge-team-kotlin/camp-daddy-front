@@ -53,17 +53,19 @@ export default function Search() {
                 </div>
                 <div className={styles.search_box}>
                     <p>제목</p>
-                    <input type="text" name="title" onChange={handleInputChange} />
+                    <input type="text" name="title" onChange={handleInputChange}/>
                 </div>
-                <div className={styles.search_box}>
+                <div className={styles.search_start}>
                     <p>시작일</p>
-                    <input type="date" name="startDate" onChange={handleInputChange} />
+                    <input type="date" name="startDate" onChange={handleInputChange}/>
+                </div>
+                <div className={styles.search_end}>
                     <p>종료일</p>
-                    <input type="date" name="endDate" onChange={handleInputChange} />
+                    <input type="date" name="endDate" onChange={handleInputChange}/>
                 </div>
                 <button onClick={handleSubmit}>검색</button>
             </div>
-            <Nav />
+            <Nav/>
         </div>
     );
 }

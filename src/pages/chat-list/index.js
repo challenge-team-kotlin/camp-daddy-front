@@ -16,8 +16,8 @@ export default function ChatList() {
         const res = await getChatRoom(decode.sub);
         res.data.forEach((e) => {
           e.lastChatDate = !e.lastChatDate
-            ? "아직 메시지가 없어요"
-            : e.lastChatDate;
+            ? ""
+            : e.lastChatDate.replace("T", " ");
           e.lastChatMessage = !e.lastChatMessage
             ? "아직 메시지가 없어요"
             : e.lastChatMessage;
