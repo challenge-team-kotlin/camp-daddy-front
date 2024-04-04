@@ -115,3 +115,7 @@ export const getChatRoom = async (id) => {
 export const getMyReviewList = async () => {
     return apiClient.get(`/reviews/me`)
 }
+
+export const getChatRoomDetail = async (id) => {
+    return apiClient.get(`/chatroom/${id}`)
+}

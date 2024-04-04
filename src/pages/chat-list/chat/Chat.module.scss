@@ -1,6 +1,9 @@
 .my_main {
   background-color: #fff;
   min-height: 100vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
@@ -9,4 +12,20 @@
   color: #000;
   padding: 20px 0 0 20px;
   text-shadow: 0 6px 3px rgba(0, 0, 0, 0.3);
+}
+
+.text_input {
+  position: fixed;
+  bottom: 60px;
+  left: 10;
+  width: 70%;
+  text-align: center;
+  background-color: #fff; /* 필요에 따라 배경색을 조정하세요 */
+  padding: 10px; /* 필요에 따라 여백을 조정하세요 */
+  z-index: 999; /* 다른 요소 위에 표시되도록 z-index를 설정하세요 */
+}
+
+.text_input input {
+  
+  width: 70%;
 }
