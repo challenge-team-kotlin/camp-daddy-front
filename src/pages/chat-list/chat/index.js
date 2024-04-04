@@ -1,7 +1,7 @@
 import Nav from "../../../components/molecules/nav";
 import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getChatRoomDetail } from "../../../api/camp-daddy";
+import { getChatRoomDetail, memberInfo } from "../../../api/camp-daddy";
 import styles from "./Chat.module.scss";
 import { Stomp } from "@stomp/stompjs";
 import { jwtDecode } from "jwt-decode";
@@ -11,10 +11,10 @@ export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const { id } = useParams();
+  const [ myProfile, setMyProfile ] = useState();
 
   const stompClient = useRef(null);
   const user = jwtDecode(localStorage.getItem("access_token"));
-
 
   const saveMessage = (event) => {
     setMessage(event.target.value);
@@ -79,6 +79,16 @@ export default function Chat() {
         window.location.href = "/";
       }
     };
+    const fetchUserInfo = async () => {
+      try {
+        const res = await memberInfo(user.sub);
+        setMyProfile(res.data);
+      } catch (e) {
+        alert(e.response.data.payload);
+        window.location.href = "/";
+      }
+    };
+    fetchUserInfo();
     connect();
     fetchChatRoomData();
     return () => disconnect();
@@ -88,27 +98,54 @@ export default function Chat() {
     <div className={styles.my_main}>
       {datas && <h2 className={styles.title}>{datas.productDetail.title}</h2>}
       <div className={styles.chat_box}>
-      {messages.map((data, index) => (
-        <div key={index}>
-          {data.status === "MESSAGE" && (
+        {messages.map((data, index) => (
+          <div key={index}>
+            {data.status === "MESSAGE" &&
+              myProfile.nickname === data.nickname && (
+                <>
+                  <div>내꺼</div>
+                  <div className={styles.nick_message_created}>
+                    <div className={styles.nick_message}>
+                      <p className={styles.nick}>{data.nickname}</p>
+                      <p className={styles.message}>{data.message}</p>
+                    </div>
+                    <span className={styles.createdAt}>
+                      {data.createdAt.replace("T", " ").split(".")[0]}
+                    </span>
+                  </div>
+                </>
+              )}
+            {data.status === "MESSAGE" &&
+              myProfile.nickname !== data.nickname && (
+                <>
+                  <div>니꺼</div>
+                  <div className={styles.nick_message_created}>
+                    <div className={styles.nick_message}>
+                      <p className={styles.nick}>{data.nickname}</p>
+                      <p className={styles.message}>{data.message}</p>
+                    </div>
+                    <span className={styles.createdAt}>
+                      {data.createdAt.replace("T", " ").split(".")[0]}
+                    </span>
+                  </div>
+                </>
+              )}
+            {data.status === "NOTICE" && (
               <>
-                <div className={styles.nick_message}>
-                  <p className={styles.nick}>{data.nickname}</p>
-                  <p className={styles.message}>{data.message}</p>
+                <div className={styles.announcement_box}>
+                  <p>공지입니다.</p>
+                  <p>{data.message}</p>
+                  <span>
+                    {data.createdAt
+                      .replace("T", " ")
+                      .split(".")[0]
+                      .replaceAll("-", ".")}
+                  </span>
                 </div>
-                <span className={styles.createdAt}>{data.createdAt.replace('T', ' ').split('.')[0].replaceAll('-', '.')}</span>
               </>
-          )}
-          {data.status === "NOTICE" && (
-            <>
-              <hr />
-              <p>공지입니다.</p>
-              <p>{data.message}</p>
-              <span>{data.createdAt}</span>
-            </>
-          )}
-        </div>
-      ))}
+            )}
+          </div>
+        ))}
       </div>
       <div className={styles.text_input_div}>
         <div className={styles.text_input}>
