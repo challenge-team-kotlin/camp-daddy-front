@@ -14,11 +14,16 @@
   text-shadow: 0 6px 3px rgba(0, 0, 0, 0.3);
 }
 
+.text_input_div {
+  height: 50px;
+  background-color: white;
+}
+
 .text_input {
   position: fixed;
-  bottom: 60px;
+  width: 580px;
+  bottom: 50px;
   left: 10;
-  width: 70%;
   text-align: center;
   background-color: #fff; /* 필요에 따라 배경색을 조정하세요 */
   padding: 10px; /* 필요에 따라 여백을 조정하세요 */
@@ -27,5 +32,5 @@
 
 .text_input input {
   
-  width: 70%;
+  width: 80%;
 }

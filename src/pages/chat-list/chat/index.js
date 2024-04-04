@@ -17,7 +17,9 @@ export default function Chat() {
   const user = jwtDecode(localStorage.getItem("access_token"));
 
   const connect = () => {
-    const socket = new WebSocket(`${process.env.REACT_APP_API_URL}/ws/chat`);
+    const socket = new WebSocket(
+      `${process.env.REACT_APP_SOCKET_API_URL}/ws/chat`
+    );
     stompClient.current = Stomp.over(socket);
     stompClient.current.connect(
       {
@@ -106,16 +108,17 @@ export default function Chat() {
           )}
         </div>
       ))}
-
-      <div className={styles.text_input}>
-        <input type="text" size={60} value={message} onChange={saveMessage} />
-        <button
-          onClick={() => {
-            sendMessage();
-          }}
-        >
-          전송
-        </button>
+      <div className={styles.text_input_div}>
+        <div className={styles.text_input}>
+          <input type="text" size={60} value={message} onChange={saveMessage} />
+          <button
+            onClick={() => {
+              sendMessage();
+            }}
+          >
+            전송
+          </button>
+        </div>
       </div>
       <Nav />
     </div>
