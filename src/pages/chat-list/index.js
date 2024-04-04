@@ -15,6 +15,7 @@ export default function ChatList() {
 
         const res = await getChatRoom(decode.sub);
         res.data.forEach((e) => {
+          e.productImageUrl = !e.productImageUrl ? "" : e.productImageUrl;
           e.lastChatDate = !e.lastChatDate
             ? ""
             : e.lastChatDate.replace("T", " ");

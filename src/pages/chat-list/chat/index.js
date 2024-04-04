@@ -102,36 +102,34 @@ export default function Chat() {
           <div key={index}>
             {data.status === "MESSAGE" &&
               myProfile.nickname === data.nickname && (
-                <>
-                  <div>내꺼</div>
+                <div className={styles.my_message}>
                   <div className={styles.nick_message_created}>
-                    <div className={styles.nick_message}>
+                    <div className={styles.nick_message} style={{textAlign: "right", paddingRight: 10}} >
                       <p className={styles.nick}>{data.nickname}</p>
                       <p className={styles.message}>{data.message}</p>
                     </div>
-                    <span className={styles.createdAt}>
-                      {data.createdAt.replace("T", " ").split(".")[0]}
+                    <span className={styles.createdAt} style={{textAlign: "right", display: "block", paddingRight: 10}}>
+                      {data.createdAt.replace("T", " ").split(".")[0].replaceAll('-', '.')}
                     </span>
                   </div>
-                </>
+                </div>
               )}
             {data.status === "MESSAGE" &&
               myProfile.nickname !== data.nickname && (
-                <>
-                  <div>니꺼</div>
+                <div className={styles.u_message}>
                   <div className={styles.nick_message_created}>
                     <div className={styles.nick_message}>
                       <p className={styles.nick}>{data.nickname}</p>
                       <p className={styles.message}>{data.message}</p>
                     </div>
                     <span className={styles.createdAt}>
-                      {data.createdAt.replace("T", " ").split(".")[0]}
+                      {data.createdAt.replace("T", " ").split(".")[0].replaceAll('-', '.')}
                     </span>
                   </div>
-                </>
+                </div>
               )}
             {data.status === "NOTICE" && (
-              <>
+              <div className={styles.announcement}>
                 <div className={styles.announcement_box}>
                   <p>공지입니다.</p>
                   <p>{data.message}</p>
@@ -142,7 +140,7 @@ export default function Chat() {
                       .replaceAll("-", ".")}
                   </span>
                 </div>
-              </>
+              </div>
             )}
           </div>
         ))}
