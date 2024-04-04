@@ -19,6 +19,10 @@
   flex-direction: column;
 }
 
+.nick_message_created{
+  margin-bottom: 30px;
+}
+
 .nick_message {
   width: 30%;
   flex-direction: column;
@@ -36,7 +40,7 @@
 }
  .createdAt {
    font-size: 14px;
-   padding-left: 37px;
+   padding-left: 40px;
  }
 
 .text_input_div {
@@ -49,27 +53,43 @@
   width: 580px;
   bottom: 50px;
   text-align: center;
-  background-color: #fff; /* 필요에 따라 배경색을 조정하세요 */
-  padding: 10px; /* 필요에 따라 여백을 조정하세요 */
-  z-index: 999; /* 다른 요소 위에 표시되도록 z-index를 설정하세요 */
+  background-color: #fff;
+  padding: 10px;
+  z-index: 999;
 }
 
-.text_input input {
-  width: 80%;
-  height: 30px;
-  border: 3px solid rgba(0, 0, 0, 0.23);
+.announcement_box {
+  width: auto;
+  padding: 10px 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: antiquewhite;
+  border-radius: 10px;
+  p {
+    font-size: 17px;
+    font-weight: bold;
+  }
 }
-input:hover {
-  border: 3px solid #007bff;
+.text_input_div {
+  .text_input input {
+    width: 80%;
+    height: 30px;
+    border: 3px solid rgba(0, 0, 0, 0.23);
+  }
+  input:hover {
+    border: 3px solid #AEDEC4;
+  }
+  .text_input button {
+    width: 60px;
+    height: 38px;
+    font-size: 15px;
+    margin-left: 10px;
+    border: 3px solid rgba(0, 0, 0, 0.23);
+  }
+  button:hover {
+    border: 3px solid #AEDEC4;
+  }
 }
 
-.text_input button {
-  width: 60px;
-  height: 38px;
-  font-size: 15px;
-  margin-left: 10px;
-  border: 3px solid rgba(0, 0, 0, 0.23);
-}
-button:hover {
-  border: 3px solid #007bff;
-}
+
+
