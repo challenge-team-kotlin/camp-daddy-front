@@ -11,7 +11,9 @@ export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const { id } = useParams();
-  const [ myProfile, setMyProfile ] = useState();
+  const [myProfile, setMyProfile] = useState();
+
+  const messageEndRef = useRef();
 
   const stompClient = useRef(null);
   const user = jwtDecode(localStorage.getItem("access_token"));
@@ -41,7 +43,7 @@ export default function Chat() {
         },
         JSON.stringify(messageObj)
       );
-      setMessage(""); // 입력 필드 초기화
+      setMessage("");
     }
   };
 
@@ -94,6 +96,10 @@ export default function Chat() {
     return () => disconnect();
   }, [id]);
 
+  useEffect(() => {
+    messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
     <div className={styles.my_main}>
       {datas && <h2 className={styles.title}>{datas.productDetail.title}</h2>}
@@ -104,12 +110,25 @@ export default function Chat() {
               myProfile.nickname === data.nickname && (
                 <div className={styles.my_message}>
                   <div className={styles.nick_message_created}>
-                    <div className={styles.nick_message} style={{textAlign: "right", paddingRight: 10}} >
+                    <div
+                      className={styles.nick_message}
+                      style={{ textAlign: "right", paddingRight: 10 }}
+                    >
                       <p className={styles.nick}>{data.nickname}</p>
                       <p className={styles.message}>{data.message}</p>
                     </div>
-                    <span className={styles.createdAt} style={{textAlign: "right", display: "block", paddingRight: 10}}>
-                      {data.createdAt.replace("T", " ").split(".")[0].replaceAll('-', '.')}
+                    <span
+                      className={styles.createdAt}
+                      style={{
+                        textAlign: "right",
+                        display: "block",
+                        paddingRight: 10,
+                      }}
+                    >
+                      {data.createdAt
+                        .replace("T", " ")
+                        .split(".")[0]
+                        .replaceAll("-", ".")}
                     </span>
                   </div>
                 </div>
@@ -123,7 +142,10 @@ export default function Chat() {
                       <p className={styles.message}>{data.message}</p>
                     </div>
                     <span className={styles.createdAt}>
-                      {data.createdAt.replace("T", " ").split(".")[0].replaceAll('-', '.')}
+                      {data.createdAt
+                        .replace("T", " ")
+                        .split(".")[0]
+                        .replaceAll("-", ".")}
                     </span>
                   </div>
                 </div>
@@ -157,7 +179,7 @@ export default function Chat() {
           </button>
         </div>
       </div>
-
+      <div ref={messageEndRef}></div>
       <Nav />
     </div>
   );
