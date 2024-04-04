@@ -5,7 +5,6 @@ import { getChatRoomDetail } from "../../../api/camp-daddy";
 import styles from "./Chat.module.scss";
 import { Stomp } from "@stomp/stompjs";
 import { jwtDecode } from "jwt-decode";
-import SockJS from "sockjs-client";
 
 export default function Chat() {
   const [datas, setDatas] = useState();
@@ -16,29 +15,6 @@ export default function Chat() {
   const stompClient = useRef(null);
   const user = jwtDecode(localStorage.getItem("access_token"));
 
-  const connect = () => {
-    const socket = new WebSocket(
-      `${process.env.REACT_APP_SOCKET_API_URL}/ws/chat`
-    );
-    stompClient.current = Stomp.over(socket);
-    stompClient.current.connect(
-      {
-        Authorization: `${localStorage.getItem("access_token")}`,
-      },
-      () => {
-        stompClient.current.subscribe(
-          `/sub/chat/${id}`,
-          (message) => {
-            const newMessage = JSON.parse(message.body);
-            setMessages((prevMessages) => [...prevMessages, newMessage]);
-          },
-          {
-            Authorization: `${localStorage.getItem("access_token")}`,
-          }
-        );
-      }
-    );
-  };
 
   const saveMessage = (event) => {
     setMessage(event.target.value);
@@ -70,7 +46,29 @@ export default function Chat() {
   };
 
   useEffect(() => {
-    connect();
+    const connect = () => {
+      const socket = new WebSocket(
+        `${process.env.REACT_APP_SOCKET_API_URL}/ws/chat`
+      );
+      stompClient.current = Stomp.over(socket);
+      stompClient.current.connect(
+        {
+          Authorization: `${localStorage.getItem("access_token")}`,
+        },
+        () => {
+          stompClient.current.subscribe(
+            `/sub/chat/${id}`,
+            (message) => {
+              const newMessage = JSON.parse(message.body);
+              setMessages((prevMessages) => [...prevMessages, newMessage]);
+            },
+            {
+              Authorization: `${localStorage.getItem("access_token")}`,
+            }
+          );
+        }
+      );
+    };
     const fetchChatRoomData = async () => {
       try {
         const res = await getChatRoomDetail(id);
@@ -81,6 +79,7 @@ export default function Chat() {
         window.location.href = "/";
       }
     };
+    connect();
     fetchChatRoomData();
     return () => disconnect();
   }, [id]);

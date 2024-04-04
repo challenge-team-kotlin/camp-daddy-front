@@ -3,7 +3,7 @@ import styles from "./ReservationList.module.scss";
 import {
   getMyReservationList,
   patchReservationStatus,
-  createReview
+  createReview,
 } from "../../../api/camp-daddy";
 import React, { useState, useEffect } from "react";
 import { handleImgError } from "../../../components/handleImage";
@@ -42,29 +42,27 @@ export default function ReservationListQuery() {
   };
 
   const handleReviewSubmit = async () => {
-
     const imageUrls = [];
     for (const image of images) {
-      const imageUrl = await uploadPhotoToS3(image, 'camp-daddy-bucket');
+      const imageUrl = await uploadPhotoToS3(image, "camp-daddy-bucket");
       imageUrls.push(imageUrl);
     }
 
     const data = {
-      content : reviewText,
-      productId : modalReservationId,
-      score : reviewScore,
-      imageUrls : imageUrls
+      content: reviewText,
+      productId: modalReservationId,
+      score: reviewScore,
+      imageUrls: imageUrls,
     };
-    return createReview(data).then((res) => {
-      if(res.status === 201){
-        alert("리뷰 작성이 완료 되었어요.")
-      }
-    
-    })
-    .catch((e) => {
-      alert(e.response.data.payload)  
-    });
-
+    return createReview(data)
+      .then((res) => {
+        if (res.status === 201) {
+          alert("리뷰 작성이 완료 되었어요.");
+        }
+      })
+      .catch((e) => {
+        alert(e.response.data.payload);
+      });
   };
 
   const handleSelect = (e, reservationId) => {
@@ -79,7 +77,7 @@ export default function ReservationListQuery() {
     const fetchReservationData = async () => {
       try {
         const res = await getMyReservationList();
-        
+
         setDatas(res.data);
         const initialSelectedValues = {};
         res.data.forEach((data) => {
@@ -114,62 +112,66 @@ export default function ReservationListQuery() {
       <h2 className={styles.title}>예약 목록 조회</h2>
       <div className={styles.sale_product_wrap}>
         {datas.map((data, index) => (
-            <div className={styles.sale_box}>
-          <div key={data.reservationId}>
-            <div className={styles.sale_product}>
-              <img onError={handleImgError} src={data.productImageUrl} alt="" />
-              <div>
+          <div key={data.reservationId} className={styles.sale_box}>
+            <div>
+              <div className={styles.sale_product}>
+                <img
+                  onError={handleImgError}
+                  src={data.productImageUrl}
+                  alt=""
+                />
                 <div>
-                  <span>상품명 : {data.productTitle}</span>
-                </div>
-                <div>
-                  <span>총 가격 : {data.totalPrice}</span>
-                </div>
-                <div>
-                  <span>
-                    날짜 : {data.startDate}~{data.endDate}
-                  </span>
-                </div>
-                <div className={styles.sale_btn}>
-                  <span>예약 상황 : {data.reservationStatus}</span>
-                  <select
-                    onChange={(e) => handleSelect(e, data.reservationId)}
-                    value={selectedValues[data.reservationId]}
-                  >
-                    <option value="" disabled>
-                      예약 상태
-                    </option>
-                    {data.reservationStatus === "요청 승인" && (
-                      <option value="RENT">대여중</option>
-                    )}
-                    {data.reservationStatus === "대여 요청" && (
-                      <option value="CANCELED">취소</option>
-                    )}
-                  </select>
+                  <div>
+                    <span>상품명 : {data.productTitle}</span>
+                  </div>
+                  <div>
+                    <span>총 가격 : {data.totalPrice}</span>
+                  </div>
+                  <div>
+                    <span>
+                      날짜 : {data.startDate}~{data.endDate}
+                    </span>
+                  </div>
+                  <div className={styles.sale_btn}>
+                    <span>예약 상황 : {data.reservationStatus}</span>
+                    <select
+                      onChange={(e) => handleSelect(e, data.reservationId)}
+                      value={selectedValues[data.reservationId]}
+                    >
+                      <option value="" disabled>
+                        예약 상태
+                      </option>
+                      {data.reservationStatus === "요청 승인" && (
+                        <option value="RENT">대여중</option>
+                      )}
+                      {data.reservationStatus === "대여 요청" && (
+                        <option value="CANCELED">취소</option>
+                      )}
+                    </select>
 
-                  {data.reservationStatus !== "대여 종료" && (
-                    <button
-                      onClick={() => {
-                        patchReservation(data.reservationId);
-                      }}
-                    >
-                      상태 수정
-                    </button>
-                  )}
-                  {data.reservationStatus === "대여 종료" && (
-                    <button
-                      onClick={() => {
-                        openModal(data.productId);
-                      }}
-                    >
-                      리뷰 남기기
-                    </button>
-                  )}
+                    {data.reservationStatus !== "대여 종료" && (
+                      <button
+                        onClick={() => {
+                          patchReservation(data.reservationId);
+                        }}
+                      >
+                        상태 수정
+                      </button>
+                    )}
+                    {data.reservationStatus === "대여 종료" && (
+                      <button
+                        onClick={() => {
+                          openModal(data.productId);
+                        }}
+                      >
+                        리뷰 남기기
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-    </div>
         ))}
         <Modal
           isOpen={isModalOpen}
