@@ -54,6 +54,11 @@ export default function ProductAdd() {
       return;
     }
 
+    if (isNaN(price)) {
+      setErrorMessage('가격은 숫자로 입력해주세요.');
+      return;
+    }
+
     try {
       // 모든 이미지를 순회하며 S3에 업로드하고 이미지 URL을 배열에 저장
       const imageUrls = [];
@@ -79,6 +84,7 @@ export default function ProductAdd() {
       setErrorMessage('상품 추가에 실패했습니다.');
     }
   };
+
 
   return (
     <div className={styles.my_main}>
