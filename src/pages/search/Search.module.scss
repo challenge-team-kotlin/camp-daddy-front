@@ -45,7 +45,6 @@
       height: 30px;
       font-size: 16px;
       font-weight: 400;
-      //color: #333;
       border: 3px solid rgba(0, 0, 0, 0.23);
       border-radius: 10px;
     }
@@ -54,6 +53,52 @@
     }
     .date {
       width: 200px;
+    }
+  }
+  .search_start {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+    p {
+      font-size: 18px;
+      font-weight: 400;
+      color: #000;
+      width: 100px;
+    }
+    input {
+      width: 303px;
+      height: 35px;
+      font-size: 16px;
+      font-weight: 400;
+      border: 3px solid rgba(0, 0, 0, 0.23);
+      border-radius: 10px;
+    }
+    input:hover {
+      border: 3px solid #007bff;
+    }
+  }
+  .search_end {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+    p {
+      font-size: 18px;
+      font-weight: 400;
+      color: #000;
+      width: 100px;
+    }
+    input {
+      width: 303px;
+      height: 35px;
+      font-size: 16px;
+      font-weight: 400;
+      border: 3px solid rgba(0, 0, 0, 0.23);
+      border-radius: 10px;
+    }
+    input:hover {
+      border: 3px solid #007bff;
     }
   }
   button {
