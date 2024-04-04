@@ -14,7 +14,6 @@ export default function SaleListQuery() {
         // 백엔드에서 사용자의 판매 상품 목록을 가져오는 API 호출
         const userSales = await getMemberProduct(decode.sub);
         userSales.forEach((data) => {
-          console.log(data)
           if(data.presentationImage.length === 0){
             data.presentationImageUrl = ""
           }else{

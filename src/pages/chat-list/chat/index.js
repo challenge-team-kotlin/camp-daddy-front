@@ -17,7 +17,7 @@ export default function Chat() {
   const user = jwtDecode(localStorage.getItem("access_token"));
 
   const connect = () => {
-    const socket = new WebSocket("ws://localhost:8080/ws/chat");
+    const socket = new WebSocket(`${process.env.REACT_APP_API_URL}/ws/chat`);
     stompClient.current = Stomp.over(socket);
     stompClient.current.connect(
       {

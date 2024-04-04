@@ -55,9 +55,7 @@ export default function ReservationListQuery() {
       score : reviewScore,
       imageUrls : imageUrls
     };
-    console.log(data)
     return createReview(data).then((res) => {
-      console.log(res)
       if(res.status === 201){
         alert("리뷰 작성이 완료 되었어요.")
       }
