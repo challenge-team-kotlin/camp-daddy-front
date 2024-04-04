@@ -88,15 +88,17 @@ export default function Chat() {
   return (
     <div className={styles.my_main}>
       {datas && <h2 className={styles.title}>{datas.productDetail.title}</h2>}
+      <div className={styles.chat_box}>
       {messages.map((data, index) => (
         <div key={index}>
           {data.status === "MESSAGE" && (
-            <>
-              <hr />
-              <p>{data.nickname}</p>
-              <p>{data.message}</p>
-              <span>{data.createdAt}</span>
-            </>
+              <>
+                <div className={styles.nick_message}>
+                  <p className={styles.nick}>{data.nickname}</p>
+                  <p className={styles.message}>{data.message}</p>
+                </div>
+                <span className={styles.createdAt}>{data.createdAt.replace('T', ' ').split('.')[0].replaceAll('-', '.')}</span>
+              </>
           )}
           {data.status === "NOTICE" && (
             <>
@@ -108,6 +110,7 @@ export default function Chat() {
           )}
         </div>
       ))}
+      </div>
       <div className={styles.text_input_div}>
         <div className={styles.text_input}>
           <input type="text" size={60} value={message} onChange={saveMessage} />
@@ -120,6 +123,7 @@ export default function Chat() {
           </button>
         </div>
       </div>
+
       <Nav />
     </div>
   );
