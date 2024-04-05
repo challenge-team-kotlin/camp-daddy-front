@@ -58,6 +58,7 @@ export default function ReservationListQuery() {
       .then((res) => {
         if (res.status === 201) {
           alert("리뷰 작성이 완료 되었어요.");
+          window.location.href = `/products/${modalReservationId}`
         }
       })
       .catch((e) => {
