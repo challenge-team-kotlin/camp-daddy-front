@@ -18,6 +18,20 @@ export default function Chat() {
   const stompClient = useRef(null);
   const user = jwtDecode(localStorage.getItem("access_token"));
 
+  function formatDate(dateString) {
+    const date = new Date(dateString)
+    date.setHours(date.getHours() + 9);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    
+    return `${year}.${month}.${day} ${hours}:${minutes}:${seconds}`;
+  }
+
   const saveMessage = (event) => {
     setMessage(event.target.value);
   };
@@ -125,10 +139,7 @@ export default function Chat() {
                         paddingRight: 10,
                       }}
                     >
-                      {data.createdAt
-                        .replace("T", " ")
-                        .split(".")[0]
-                        .replaceAll("-", ".")}
+                      {formatDate(data.createdAt)}
                     </span>
                   </div>
                 </div>
@@ -142,10 +153,7 @@ export default function Chat() {
                       <p className={styles.message}>{data.message}</p>
                     </div>
                     <span className={styles.createdAt}>
-                      {data.createdAt
-                        .replace("T", " ")
-                        .split(".")[0]
-                        .replaceAll("-", ".")}
+                    {formatDate(data.createdAt)}
                     </span>
                   </div>
                 </div>
@@ -156,10 +164,7 @@ export default function Chat() {
                   <p>공지입니다.</p>
                   <p>{data.message}</p>
                   <span>
-                    {data.createdAt
-                      .replace("T", " ")
-                      .split(".")[0]
-                      .replaceAll("-", ".")}
+                  {formatDate(data.createdAt)}
                   </span>
                 </div>
               </div>
