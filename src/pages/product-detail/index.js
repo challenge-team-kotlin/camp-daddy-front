@@ -9,35 +9,36 @@ export default function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState("");
   const [reviews, setReviews] = useState([]);
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const insertReservation = async (productId) => {
     if (!startDate || !endDate) {
-      alert('날짜를 입력해주세요.')
-      return
+      alert("날짜를 입력해주세요.");
+      return;
     }
 
     const data = {
       productId: productId,
       startDate: startDate,
-      endDate: endDate
+      endDate: endDate,
     };
 
-    return createReservation(data).then((res) => {
-      if (res.status === 201) {
-        alert("성공적으로 예약을 요청하였습니다.")
-      }
-
-    })
+    createReservation(data)
+      .then((res) => {
+        if (res.status === 201) {
+          alert("성공적으로 예약을 요청하였습니다.");
+        }
+      })
       .catch((e) => {
         if (e.response.data.errorId === 4002) {
-          alert("이미 예약이 된 날짜에요")
+          alert("이미 예약이 된 날짜에요");
         } else {
-          alert(e.response.data.payload)
+          alert(e.response.data.payload);
         }
-
       });
+
+      window.location.href ="/chat-list"
   };
 
   useEffect(() => {
@@ -66,9 +67,17 @@ export default function ProductDetail() {
           </div>
           <div className={styles.date}>
             <span>시작일 : </span>
-            <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+            <input
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
             <span>종료일 : </span>
-            <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+            <input
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
           </div>
           <div className={styles.btn_box}>
             <button
@@ -83,19 +92,19 @@ export default function ProductDetail() {
           <div className={styles.review_wrap}>
             <h6>리뷰</h6>
             {reviews.map((review, index) => (
-                <div key={index} className={styles.review_box}>
-                  <div className={styles.review_user}>
-                    <img
-                        onError={handleImgError}
-                        src={review.imageUrls}
-                        alt={review.nickName}
-                    />
-                  </div>
-                  <div className={styles.pSpan}>
-                    <p>{review.nickName}</p>
-                    <span>{review.content}</span>
-                  </div>
+              <div key={index} className={styles.review_box}>
+                <div className={styles.review_user}>
+                  <img
+                    onError={handleImgError}
+                    src={review.imageUrls}
+                    alt={review.nickName}
+                  />
                 </div>
+                <div className={styles.pSpan}>
+                  <p>{review.nickName}</p>
+                  <span>{review.content}</span>
+                </div>
+              </div>
             ))}
           </div>
         </>
