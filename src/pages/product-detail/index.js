@@ -25,10 +25,8 @@ export default function ProductDetail() {
     };
 
     createReservation(data)
-      .then((res) => {
-        if (res.status === 201) {
+      .then(() => {
           alert("성공적으로 예약을 요청하였습니다.");
-        }
       })
       .catch((e) => {
         if (e.response.data.errorId === 4002) {
